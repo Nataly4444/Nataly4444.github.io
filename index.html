@@ -3,110 +3,368 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Nataly Kudryavtseva</title>
-    <meta name="description" content="Software Engineer — frontend-focused. Building products with a strong UX taste." />
+    <title>Natalia Kudryavtseva</title>
+    <meta name="description" content="Software Engineer — frontend-focused. UX-minded. Cosmic vibes." />
+
+    <meta property="og:title" content="Natalia Kudryavtseva" />
+    <meta property="og:description" content="Software Engineer — frontend-focused. UX-minded." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nataly4444.github.io/" />
+
     <style>
       :root {
-        --bg: #0b0f14;
-        --card: rgba(255, 255, 255, 0.06);
+        --bg: #060812;
         --text: rgba(255, 255, 255, 0.92);
-        --muted: rgba(255, 255, 255, 0.65);
-        --accent: #7c5cff;
-        --border: rgba(255, 255, 255, 0.10);
+        --muted: rgba(255, 255, 255, 0.68);
+        --glass: rgba(255, 255, 255, 0.06);
+        --glass2: rgba(255, 255, 255, 0.03);
+        --border: rgba(255, 255, 255, 0.12);
+        --shadow: rgba(0, 0, 0, 0.45);
+
+        --c-cyan: #00c2ff;
+        --c-violet: #7c5cff;
+        --c-magenta: #ff2ea6;
+        --c-mint: #00ffb2;
       }
+
       * { box-sizing: border-box; }
+      html, body { height: 100%; }
       body {
         margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-        background: radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,0.20), transparent 60%),
-                    radial-gradient(900px 500px at 80% 30%, rgba(0,194,255,0.12), transparent 55%),
-                    var(--bg);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+        background: var(--bg);
         color: var(--text);
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 32px 16px;
+        overflow-x: hidden;
       }
-      .wrap { width: min(980px, 100%); }
+
+      /* --- Cosmic background layers --- */
+      .bg {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      /* Nebula gradients */
+      .nebula {
+        position: fixed;
+        inset: -20vh -20vw;
+        z-index: -3;
+        background:
+          radial-gradient(900px 620px at 15% 12%, rgba(0, 194, 255, 0.25), transparent 60%),
+          radial-gradient(860px 560px at 40% 60%, rgba(255, 46, 166, 0.18), transparent 60%),
+          radial-gradient(900px 620px at 80% 20%, rgba(124, 92, 255, 0.28), transparent 60%),
+          radial-gradient(1200px 760px at 80% 85%, rgba(0, 255, 178, 0.10), transparent 62%),
+          radial-gradient(1200px 900px at 50% 110%, rgba(255, 255, 255, 0.06), transparent 60%),
+          linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.35));
+        filter: saturate(1.15);
+      }
+
+      /* Soft noise */
+      .noise {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background-image:
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+        opacity: 0.18;
+        mix-blend-mode: overlay;
+      }
+
+      /* Starfield canvas */
+      canvas#stars {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+      }
+
+      /* --- Layout --- */
+      .wrap {
+        width: min(1060px, 100%);
+        margin: 0 auto;
+        padding: 54px 16px 80px;
+      }
+
       .hero {
         border: 1px solid var(--border);
-        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-        border-radius: 20px;
-        padding: 28px;
+        background: linear-gradient(180deg, var(--glass), var(--glass2));
+        border-radius: 24px;
+        padding: 30px;
         backdrop-filter: blur(14px);
+        box-shadow:
+          0 18px 60px var(--shadow),
+          inset 0 1px 0 rgba(255,255,255,0.06);
+        overflow: hidden;
+        position: relative;
       }
-      h1 { margin: 0 0 6px; font-size: 34px; letter-spacing: -0.02em; }
-      .role { color: var(--muted); margin: 0 0 18px; font-size: 16px; }
-      .row { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
-      .pill {
-        display: inline-flex; align-items: center; gap: 8px;
-        border: 1px solid var(--border);
-        background: rgba(0,0,0,0.20);
-        color: var(--text);
-        padding: 10px 12px;
+
+      /* top glow strip */
+      .hero::before {
+        content: "";
+        position: absolute;
+        left: -20%;
+        top: -70%;
+        width: 140%;
+        height: 200%;
+        background:
+          radial-gradient(600px 300px at 20% 30%, rgba(0, 194, 255, 0.10), transparent 65%),
+          radial-gradient(560px 280px at 70% 30%, rgba(255, 46, 166, 0.10), transparent 66%),
+          radial-gradient(640px 320px at 55% 70%, rgba(124, 92, 255, 0.12), transparent 65%);
+        transform: rotate(-8deg);
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(34px, 4vw, 56px);
+        line-height: 1.06;
+        letter-spacing: -0.03em;
+        text-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      }
+
+      .role {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 14px;
         border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.22);
         text-decoration: none;
+        color: var(--text);
         font-size: 14px;
+        transition: transform 120ms ease, border-color 120ms ease;
+        user-select: none;
       }
-      .pill b { color: var(--accent); }
+      .chip:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.22); }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--c-violet);
+        box-shadow: 0 0 14px rgba(124,92,255,0.55);
+      }
+      .dot.cyan { background: var(--c-cyan); box-shadow: 0 0 14px rgba(0,194,255,0.55); }
+      .dot.magenta { background: var(--c-magenta); box-shadow: 0 0 14px rgba(255,46,166,0.55); }
+      .dot.mint { background: var(--c-mint); box-shadow: 0 0 14px rgba(0,255,178,0.45); }
+
       .grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         gap: 14px;
-        margin-top: 14px;
+        margin-top: 18px;
       }
+
       .card {
         grid-column: span 6;
         border: 1px solid var(--border);
-        background: var(--card);
+        background: rgba(0,0,0,0.18);
         border-radius: 18px;
         padding: 18px;
+        box-shadow: 0 12px 34px rgba(0,0,0,0.35);
       }
-      .card h2 { margin: 0 0 10px; font-size: 16px; letter-spacing: -0.01em; }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        letter-spacing: -0.01em;
+        color: rgba(255,255,255,0.88);
+      }
+
       ul { margin: 0; padding-left: 18px; color: var(--muted); }
-      li { margin: 6px 0; }
-      @media (max-width: 760px) {
-        .card { grid-column: span 12; }
-        h1 { font-size: 28px; }
+      li { margin: 7px 0; }
+
+      .skills {
+        margin-top: 26px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding-top: 18px;
       }
-      .note { color: var(--muted); font-size: 12px; margin-top: 12px; }
+
+      .skills h2 {
+        margin: 0 0 10px;
+        font-size: 15px;
+        color: rgba(255,255,255,0.82);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .skills p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .footer {
+        margin-top: 18px;
+        color: rgba(255,255,255,0.55);
+        font-size: 12px;
+      }
+
+      @media (max-width: 820px) {
+        .card { grid-column: span 12; }
+        .hero { padding: 22px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .chip { transition: none; }
+      }
     </style>
   </head>
+
   <body>
-    <div class="wrap">
-      <div class="hero">
-        <h1>Nataly Kudryavtseva</h1>
-        <p class="role"><b>Software Engineer</b> · frontend-focused · UX-minded</p>
+    <div class="nebula" aria-hidden="true"></div>
+    <canvas id="stars" class="bg" aria-hidden="true"></canvas>
+    <div class="noise" aria-hidden="true"></div>
 
-        <div class="row">
-          <a class="pill" href="https://github.com/Nataly4444" target="_blank" rel="noreferrer">GitHub <b>@Nataly4444</b></a>
-          <a class="pill" href="#" title="TODO: add link">Telegram <b>@kranski</b></a>
-          <a class="pill" href="#" title="TODO: add link">Email <b>TODO</b></a>
-          <a class="pill" href="#" title="TODO: add link">LinkedIn <b>TODO</b></a>
-        </div>
+    <main class="wrap">
+      <section class="hero">
+        <div class="hero-inner">
+          <h1>Natalia Kudryavtseva</h1>
+          <p class="role">Software Engineer · frontend-focused · UX-minded</p>
 
-        <div class="grid">
-          <div class="card">
-            <h2>Focus</h2>
-            <ul>
-              <li>TypeScript · React · Next.js</li>
-              <li>Clean UI, design systems, product polish</li>
-              <li>Automation + AI/ML curiosity</li>
-            </ul>
+          <div class="chips" aria-label="Links">
+            <a class="chip" href="https://github.com/Nataly4444" target="_blank" rel="noreferrer">
+              <span class="dot"></span>
+              GitHub — @Nataly4444
+            </a>
+            <a class="chip" href="https://t.me/kranski" target="_blank" rel="noreferrer">
+              <span class="dot cyan"></span>
+              Telegram — @kranski
+            </a>
+            <a class="chip" href="mailto:kranki@mail.ru">
+              <span class="dot magenta"></span>
+              Email — kranki@mail.ru
+            </a>
+            <a class="chip" href="https://www.linkedin.com/in/natalia-kudriavtseva-944779a1/" target="_blank" rel="noreferrer">
+              <span class="dot mint"></span>
+              LinkedIn — /in/natalia-kudriavtseva-944779a1
+            </a>
+            <a class="chip" href="https://career.habr.com/kranski4" target="_blank" rel="noreferrer">
+              <span class="dot"></span>
+              Habr Career — /kranski4
+            </a>
           </div>
-          <div class="card">
-            <h2>Current stack (from my projects)</h2>
-            <ul>
-              <li>Tailwind CSS</li>
-              <li>PostgreSQL · Prisma</li>
-              <li>Vercel · Clerk</li>
-              <li>GitHub Actions</li>
-            </ul>
-          </div>
-        </div>
 
-        <div class="note">Links are placeholders for now — you can fill them later.</div>
-      </div>
-    </div>
+          <div class="grid" role="list">
+            <div class="card" role="listitem">
+              <h2>What I build</h2>
+              <ul>
+                <li>Web apps with strong UX and polished UI details</li>
+                <li>Frontend architecture, design systems, reusable components</li>
+                <li>Automation & practical AI/ML experiments</li>
+              </ul>
+            </div>
+
+            <div class="card" role="listitem">
+              <h2>Highlights</h2>
+              <ul>
+                <li>TypeScript · React · Next.js · Vue · Nuxt · Svelte · Three.js</li>
+                <li>Testing: Jest / Vitest / Cypress</li>
+                <li>Deployments: Vercel / Netlify / Docker</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="skills">
+            <h2>Skills</h2>
+            <p>
+              Frontend: React, Vue.js, Svelte, TypeScript, Next.js, Nuxt.js, Three.js ·
+              State management: Redux, MobX, Pinia, Vuex ·
+              Styling: HTML, CSS, Sass (SCSS), Tailwind CSS, Bootstrap ·
+              API / Data fetching: REST, GraphQL, Axios, TanStack Query, Apollo Client ·
+              Testing: Jest, Vitest, React Testing Library, Cypress ·
+              DB / Backend services: PostgreSQL, MySQL, MongoDB, Supabase, Firebase, Strapi ·
+              Build tools: Vite, Webpack, ESLint, Prettier ·
+              Deployment: Vercel, Netlify, Docker, CI/CD ·
+              Version control: Git, GitHub, GitLab, Bitbucket
+            </p>
+          </div>
+
+          <div class="footer">Last updated: <span id="ts"></span></div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // tiny starfield (no dependencies)
+      const canvas = document.getElementById('stars');
+      const ctx = canvas.getContext('2d');
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let w, h, stars;
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = canvas.width = Math.floor(window.innerWidth * dpr);
+        h = canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+
+        const count = Math.floor((window.innerWidth * window.innerHeight) / 6000);
+        stars = new Array(count).fill(0).map(() => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.6 + 0.2,
+          a: Math.random() * 0.65 + 0.15,
+          v: Math.random() * 0.18 + 0.04,
+        }));
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = '#ffffff';
+        for (const s of stars) {
+          ctx.globalAlpha = s.a;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function tick() {
+        if (!prefersReduced) {
+          for (const s of stars) {
+            s.y += s.v;
+            if (s.y > h + 10) {
+              s.y = -10;
+              s.x = Math.random() * w;
+            }
+          }
+        }
+        draw();
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('resize', () => {
+        resize();
+        draw();
+      });
+
+      resize();
+      tick();
+
+      // footer timestamp
+      document.getElementById('ts').textContent = new Date().toISOString().slice(0, 10);
+    </script>
   </body>
 </html>
