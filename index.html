@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nataly Kudryavtseva</title>
+    <meta name="description" content="Software Engineer — frontend-focused. Building products with a strong UX taste." />
+    <style>
+      :root {
+        --bg: #0b0f14;
+        --card: rgba(255, 255, 255, 0.06);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.65);
+        --accent: #7c5cff;
+        --border: rgba(255, 255, 255, 0.10);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,0.20), transparent 60%),
+                    radial-gradient(900px 500px at 80% 30%, rgba(0,194,255,0.12), transparent 55%),
+                    var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px 16px;
+      }
+      .wrap { width: min(980px, 100%); }
+      .hero {
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+        border-radius: 20px;
+        padding: 28px;
+        backdrop-filter: blur(14px);
+      }
+      h1 { margin: 0 0 6px; font-size: 34px; letter-spacing: -0.02em; }
+      .role { color: var(--muted); margin: 0 0 18px; font-size: 16px; }
+      .row { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+      .pill {
+        display: inline-flex; align-items: center; gap: 8px;
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.20);
+        color: var(--text);
+        padding: 10px 12px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .pill b { color: var(--accent); }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+        margin-top: 14px;
+      }
+      .card {
+        grid-column: span 6;
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: 18px;
+        padding: 18px;
+      }
+      .card h2 { margin: 0 0 10px; font-size: 16px; letter-spacing: -0.01em; }
+      ul { margin: 0; padding-left: 18px; color: var(--muted); }
+      li { margin: 6px 0; }
+      @media (max-width: 760px) {
+        .card { grid-column: span 12; }
+        h1 { font-size: 28px; }
+      }
+      .note { color: var(--muted); font-size: 12px; margin-top: 12px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="hero">
+        <h1>Nataly Kudryavtseva</h1>
+        <p class="role"><b>Software Engineer</b> · frontend-focused · UX-minded</p>
+
+        <div class="row">
+          <a class="pill" href="https://github.com/Nataly4444" target="_blank" rel="noreferrer">GitHub <b>@Nataly4444</b></a>
+          <a class="pill" href="#" title="TODO: add link">Telegram <b>@kranski</b></a>
+          <a class="pill" href="#" title="TODO: add link">Email <b>TODO</b></a>
+          <a class="pill" href="#" title="TODO: add link">LinkedIn <b>TODO</b></a>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h2>Focus</h2>
+            <ul>
+              <li>TypeScript · React · Next.js</li>
+              <li>Clean UI, design systems, product polish</li>
+              <li>Automation + AI/ML curiosity</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h2>Current stack (from my projects)</h2>
+            <ul>
+              <li>Tailwind CSS</li>
+              <li>PostgreSQL · Prisma</li>
+              <li>Vercel · Clerk</li>
+              <li>GitHub Actions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="note">Links are placeholders for now — you can fill them later.</div>
+      </div>
+    </div>
+  </body>
+</html>
