@@ -80,9 +80,10 @@
 
       /* --- Layout --- */
       .wrap {
-        width: min(1560px, 100%);
+        /* responsive: use almost full viewport width with a safe gutter */
+        width: min(1600px, calc(100vw - 48px));
         margin: 0 auto;
-        padding: 54px 24px 80px;
+        padding: 54px 0 80px;
       }
 
       .hero {
