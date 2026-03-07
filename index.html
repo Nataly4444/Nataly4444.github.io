@@ -207,19 +207,76 @@
         text-transform: uppercase;
       }
 
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 12px;
+      .skills-slider {
+        position: relative;
       }
 
+      .skills-grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(280px, 360px);
+        gap: 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 4px 42px 10px;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .skills-grid::-webkit-scrollbar { height: 10px; }
+      .skills-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.06); border-radius: 999px; }
+      .skills-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 999px; }
+
       .skill-card {
-        grid-column: span 6;
+        scroll-snap-align: start;
         border: 1px solid var(--border);
         background: rgba(0,0,0,0.18);
         border-radius: 16px;
         padding: 14px 14px 12px;
         box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+        min-height: 180px;
+      }
+
+      .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.35);
+        color: rgba(255,255,255,0.85);
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        z-index: 2;
+        user-select: none;
+      }
+      .slider-btn:hover { border-color: rgba(255,255,255,0.24); }
+      .slider-btn:disabled { opacity: 0.35; cursor: default; }
+
+      .slider-prev { left: 6px; }
+      .slider-next { right: 6px; }
+
+      .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .slider-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.08);
+      }
+      .slider-dot.active {
+        background: rgba(255,255,255,0.75);
+        border-color: rgba(255,255,255,0.75);
       }
 
       .skill-title {
@@ -241,7 +298,7 @@
       .skill-list li { margin: 6px 0; }
 
       @media (max-width: 820px) {
-        .skill-card { grid-column: span 12; }
+        .skills-grid { grid-auto-columns: minmax(240px, 85vw); padding: 4px 38px 10px; }
       }
 
       .footer {
@@ -322,7 +379,11 @@
           <div class="skills">
             <h2>Skills</h2>
 
-            <div class="skills-grid">
+            <div class="skills-slider" id="skills">
+              <button class="slider-btn slider-prev" type="button" aria-label="Previous" data-slider-prev>‹</button>
+              <button class="slider-btn slider-next" type="button" aria-label="Next" data-slider-next>›</button>
+
+              <div class="skills-grid" data-slider-track>
               <div class="skill-card">
                 <div class="skill-title"><span class="dot"></span> Frontend</div>
                 <ul class="skill-list">
@@ -476,6 +537,7 @@
                   <li>Bitbucket</li>
                 </ul>
               </div>
+              <div class="slider-dots" aria-hidden="true" data-slider-dots></div>
             </div>
           </div>
 
@@ -545,6 +607,65 @@
 
       // footer timestamp
       document.getElementById('ts').textContent = new Date().toISOString().slice(0, 10);
+
+      // skills slider
+      (function initSkillsSlider() {
+        const root = document.getElementById('skills');
+        if (!root) return;
+
+        const track = root.querySelector('[data-slider-track]');
+        const prev = root.querySelector('[data-slider-prev]');
+        const next = root.querySelector('[data-slider-next]');
+        const dotsWrap = root.querySelector('[data-slider-dots]');
+        const cards = Array.from(track?.querySelectorAll('.skill-card') || []);
+        if (!track || cards.length === 0) return;
+
+        // build dots
+        if (dotsWrap) {
+          dotsWrap.innerHTML = cards.map(() => '<span class="slider-dot"></span>').join('');
+        }
+        const dots = Array.from(dotsWrap?.querySelectorAll('.slider-dot') || []);
+
+        function cardStep() {
+          const first = cards[0];
+          const r = first.getBoundingClientRect();
+          // include gap
+          const style = getComputedStyle(track);
+          const gap = parseFloat(style.columnGap || style.gap || '0') || 0;
+          return r.width + gap;
+        }
+
+        function maxScrollLeft() {
+          return Math.max(0, track.scrollWidth - track.clientWidth);
+        }
+
+        function update() {
+          const step = cardStep();
+          const idx = Math.round(track.scrollLeft / step);
+
+          if (prev) prev.disabled = track.scrollLeft <= 2;
+          if (next) next.disabled = track.scrollLeft >= maxScrollLeft() - 2;
+
+          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+
+        function scrollByCards(dir) {
+          const step = cardStep();
+          track.scrollBy({ left: dir * step, behavior: 'smooth' });
+        }
+
+        prev?.addEventListener('click', () => scrollByCards(-1));
+        next?.addEventListener('click', () => scrollByCards(1));
+
+        track.addEventListener('scroll', () => {
+          // avoid too many updates
+          window.requestAnimationFrame(update);
+        });
+
+        window.addEventListener('resize', () => window.requestAnimationFrame(update));
+
+        update();
+      })();
     </script>
   </body>
 </html>
