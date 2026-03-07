@@ -94,10 +94,18 @@
         position: relative;
         z-index: 1;
       }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
       .header {
         display: flex;
         align-items: center;
         gap: 18px;
+        min-width: 0;
       }
 
       .avatar {
@@ -138,7 +146,8 @@
         display: flex;
         justify-content: flex-end;
         gap: 16px;
-        margin-top: 18px;
+        margin-top: 0;
+        flex: 0 0 auto;
       }
 
       .social {
@@ -356,7 +365,8 @@
     <main class="wrap">
       <section class="hero">
         <div class="hero-inner">
-          <div class="header">
+          <div class="topbar">
+            <div class="header">
             <div class="avatar">
               <img src="./assets/avatar-placeholder.png" alt="Avatar" />
             </div>
@@ -365,9 +375,9 @@
               <h1>Natalia Kudryavtseva</h1>
               <p class="role">Software Engineer · frontend-focused · UX-minded</p>
             </div>
-          </div>
+            </div>
 
-          <div class="socials" aria-label="Social links">
+            <div class="socials" aria-label="Social links">
             <a class="social telegram" href="https://t.me/kranski" target="_blank" rel="noreferrer" aria-label="Telegram">
               <!-- paper-plane -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -410,6 +420,7 @@
                 <path d="M6 12h12" />
               </svg>
             </a>
+          </div>
           </div>
 
           <div class="grid" role="list">
