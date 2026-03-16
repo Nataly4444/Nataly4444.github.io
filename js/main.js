@@ -68,58 +68,65 @@
   function initSkillsSlider() {
     const root = document.getElementById('skills');
     const track = root?.querySelector('[data-slider-track]');
-    const prevBtn = root?.querySelector('[data-slider-prev]');
-    const nextBtn = root?.querySelector('[data-slider-next]');
-    const dotsWrap = root?.querySelector('[data-slider-dots]');
     const cards = track ? Array.from(track.querySelectorAll('.skill-card')) : [];
 
     if (!track || cards.length === 0) return;
 
+    const total = cards.length;
     let activeIndex = 0;
     let isAnimating = false;
-
-    if (dotsWrap) {
-      dotsWrap.innerHTML = cards.map(() => '<span class="slider-dot"></span>').join('');
-    }
-    const dots = Array.from(dotsWrap?.querySelectorAll('.slider-dot') || []);
+    let autoplayTimer = null;
 
     function applyTransforms() {
+      const cardWidth = cards[0].offsetWidth || 360;
+      const sideOffset = cardWidth * 0.78;
+
       cards.forEach((card, i) => {
-        const offset = i - activeIndex;
+        let offset = i - activeIndex;
+
+        if (offset > total / 2) offset -= total;
+        if (offset < -total / 2) offset += total;
+
         const absOffset = Math.abs(offset);
+        const sign = offset > 0 ? 1 : offset < 0 ? -1 : 0;
 
-        const rotateY = offset * 42;
-        const translateX = offset * 58;
-        const translateZ = -absOffset * 120;
-        const scale = absOffset === 0 ? 1 : absOffset === 1 ? 0.82 : 0.68;
-        const opacity = absOffset > 3 ? 0 : absOffset === 0 ? 1 : absOffset === 1 ? 0.72 : 0.4;
-        const zIndex = cards.length - absOffset;
+        let translateX, translateZ, rotateY, scale, opacity;
 
-        card.style.transform = `translateX(${translateX}%) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
+        if (absOffset === 0) {
+          translateX = 0; translateZ = 0; rotateY = 0; scale = 1; opacity = 1;
+        } else if (absOffset === 1) {
+          translateX = sign * sideOffset; translateZ = -80; rotateY = sign * 38; scale = 0.84; opacity = 0.75;
+        } else if (absOffset === 2) {
+          translateX = sign * (sideOffset + cardWidth * 0.52); translateZ = -160; rotateY = sign * 52; scale = 0.68; opacity = 0.4;
+        } else {
+          translateX = sign * (sideOffset + cardWidth * 0.9); translateZ = -220; rotateY = sign * 60; scale = 0.55; opacity = 0;
+        }
+
+        card.style.transform = `translateX(${translateX}px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
         card.style.opacity = opacity;
-        card.style.zIndex = zIndex;
+        card.style.zIndex = total - absOffset;
         card.style.pointerEvents = absOffset === 0 ? 'auto' : 'none';
         card.classList.toggle('is-active', offset === 0);
       });
-
-      dots.forEach((d, i) => d.classList.toggle('active', i === activeIndex));
-
-      if (prevBtn) prevBtn.disabled = activeIndex === 0;
-      if (nextBtn) nextBtn.disabled = activeIndex === cards.length - 1;
     }
 
     function goTo(index) {
       if (isAnimating) return;
-      activeIndex = Math.max(0, Math.min(cards.length - 1, index));
+      activeIndex = ((index % total) + total) % total;
       isAnimating = true;
       applyTransforms();
       setTimeout(() => { isAnimating = false; }, 420);
     }
 
-    prevBtn?.addEventListener('click', () => goTo(activeIndex - 1));
-    nextBtn?.addEventListener('click', () => goTo(activeIndex + 1));
+    function startAutoplay() {
+      if (prefersReducedMotion) return;
+      autoplayTimer = setInterval(() => goTo(activeIndex + 1), 5000);
+    }
 
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    function resetAutoplay() {
+      clearInterval(autoplayTimer);
+      startAutoplay();
+    }
 
     let dragStartX = 0;
     let isDragging = false;
@@ -128,6 +135,7 @@
       dragStartX = e.clientX;
       isDragging = true;
       track.setPointerCapture(e.pointerId);
+      clearInterval(autoplayTimer);
     });
 
     track.addEventListener('pointermove', (e) => {
@@ -139,21 +147,24 @@
       if (!isDragging) return;
       isDragging = false;
       const diff = dragStartX - e.clientX;
-      if (Math.abs(diff) > 40) {
-        goTo(activeIndex + (diff > 0 ? 1 : -1));
-      }
+      if (Math.abs(diff) > 40) goTo(activeIndex + (diff > 0 ? 1 : -1));
+      resetAutoplay();
     });
 
-    track.addEventListener('pointercancel', () => { isDragging = false; });
+    track.addEventListener('pointercancel', () => {
+      isDragging = false;
+      resetAutoplay();
+    });
 
     root.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') goTo(activeIndex - 1);
-      if (e.key === 'ArrowRight') goTo(activeIndex + 1);
+      if (e.key === 'ArrowLeft') { goTo(activeIndex - 1); resetAutoplay(); }
+      if (e.key === 'ArrowRight') { goTo(activeIndex + 1); resetAutoplay(); }
     });
 
     root.setAttribute('tabindex', '0');
 
     applyTransforms();
+    startAutoplay();
   }
 
   initStarfield();

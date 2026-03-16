@@ -253,17 +253,18 @@ li {
 .skills-slider {
   position: relative;
   outline: none;
+  overflow: hidden;
 }
 
 .skills-grid {
   position: relative;
   height: 220px;
-  perspective: 1000px;
+  perspective: 1100px;
   perspective-origin: 50% 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   cursor: grab;
   user-select: none;
   touch-action: pan-y;
@@ -295,66 +296,6 @@ li {
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-.slider-btn {
-  position: absolute;
-  top: calc(50% - 14px);
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface-dark);
-  color: rgba(255, 255, 255, 0.85);
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  z-index: 10;
-  user-select: none;
-  font-size: 20px;
-  line-height: 1;
-  transition: border-color 120ms ease, opacity 120ms ease, background 120ms ease;
-}
-
-.slider-btn:hover {
-  border-color: rgba(255, 255, 255, 0.28);
-  background: var(--surface-hover);
-}
-
-.slider-btn:disabled {
-  opacity: 0.25;
-  cursor: default;
-}
-
-.slider-prev { left: 0; }
-.slider-next { right: 0; }
-
-.slider-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.slider-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.08);
-  cursor: pointer;
-  transition: background 200ms ease, border-color 200ms ease, width 200ms ease;
-}
-
-.slider-dot:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.slider-dot.active {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(255, 255, 255, 0.8);
-  width: 20px;
-}
 
 .skill-title {
   display: flex;
