@@ -79,7 +79,7 @@
 
     function applyTransforms() {
       const cardWidth = cards[0].offsetWidth || 360;
-      const sideOffset = cardWidth * 0.78;
+      const sideOffset = cardWidth * 0.86;
 
       cards.forEach((card, i) => {
         let offset = i - activeIndex;
@@ -97,9 +97,9 @@
         } else if (absOffset === 1) {
           translateX = sign * sideOffset; translateZ = -80; rotateY = sign * 38; scale = 0.84; opacity = 0.75;
         } else if (absOffset === 2) {
-          translateX = sign * (sideOffset + cardWidth * 0.52); translateZ = -160; rotateY = sign * 52; scale = 0.68; opacity = 0.4;
+          translateX = sign * (sideOffset + cardWidth * 0.64); translateZ = -160; rotateY = sign * 52; scale = 0.68; opacity = 0.4;
         } else {
-          translateX = sign * (sideOffset + cardWidth * 0.9); translateZ = -220; rotateY = sign * 60; scale = 0.55; opacity = 0;
+          translateX = sign * (sideOffset + cardWidth * 1.1); translateZ = -220; rotateY = sign * 60; scale = 0.55; opacity = 0;
         }
 
         card.style.transform = `translateX(${translateX}px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
@@ -167,7 +167,18 @@
     startAutoplay();
   }
 
+  function initPillIcons() {
+    document.querySelectorAll('.pill-icon').forEach((img) => {
+      if (img.complete && img.naturalWidth === 0) {
+        img.setAttribute('data-error', '');
+      } else {
+        img.addEventListener('error', () => img.setAttribute('data-error', ''));
+      }
+    });
+  }
+
   initStarfield();
   initFooterTimestamp();
   initSkillsSlider();
+  initPillIcons();
 })();
