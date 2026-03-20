@@ -98,7 +98,7 @@ function setupSkillsSlider() {
 
   let currentIndex = 0;
   let autoScrollTimer = null;
-  const INTERVAL = 5000;
+  const INTERVAL = 3000;
 
   function scrollToIndex(index, useClone = false) {
     if (index >= cardCount) index = 0;
