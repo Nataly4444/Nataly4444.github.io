@@ -249,6 +249,11 @@ body {
   background: rgba(255, 255, 255, 0.12);
   border: 2px solid rgba(255, 255, 255, 0.18);
   flex-shrink: 0;
+
+  /* Avatar image injected by main.js via content.json -> heroAvatar */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 767px) {

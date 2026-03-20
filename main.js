@@ -46,6 +46,14 @@ function populateBasicContent(data) {
     }
   });
 
+  const heroAvatar = document.querySelector('.hero-avatar');
+  if (heroAvatar && data.heroAvatar) {
+    heroAvatar.style.backgroundImage = `url(${data.heroAvatar})`;
+    heroAvatar.style.backgroundSize = 'cover';
+    heroAvatar.style.backgroundPosition = 'center';
+    heroAvatar.style.backgroundRepeat = 'no-repeat';
+  }
+
   const yearEl = document.querySelector('[data-year]');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
