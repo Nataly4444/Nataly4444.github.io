@@ -1,259 +1,156 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Natalia Kudryavtseva</title>
-    <meta name="description" content="Software Engineer — frontend-focused. UX-minded. Cosmic vibes." />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Senior Frontend Engineer specializing in React, Next.js, and modern web applications. Building performant, accessible user experiences.">
+  <meta name="keywords" content="Frontend Engineer, React, Next.js, TypeScript, Web Development, UI/UX">
+  
+  <meta property="og:title" content="Senior Frontend Engineer - Portfolio">
+  <meta property="og:description" content="Building modern web applications with focus on performance, accessibility, and exceptional user experience.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourusername.github.io">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Senior Frontend Engineer - Portfolio">
+  <meta name="twitter:description" content="Building modern web applications with focus on performance, accessibility, and exceptional user experience.">
+  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <title>Senior Frontend Engineer - Portfolio</title>
+  
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/main.js" defer></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <header class="header" role="banner">
+    <nav class="nav container" role="navigation" aria-label="Main navigation">
+      <a href="#" class="nav-logo" aria-label="Home">
+        <span class="nav-logo-text">Portfolio</span>
+      </a>
+      <ul class="nav-list">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
+    </nav>
+  </header>
 
-    <meta property="og:title" content="Natalia Kudryavtseva" />
-    <meta property="og:description" content="Software Engineer — frontend-focused. UX-minded." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://nataly4444.github.io/" />
-
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-
-  <body>
-    <div class="nebula" aria-hidden="true"></div>
-    <canvas id="stars" class="bg" aria-hidden="true"></canvas>
-    <div class="noise" aria-hidden="true"></div>
-
-    <main class="wrap">
-      <section class="hero">
-        <div class="hero-inner">
-          <div class="topbar">
-            <div class="header">
-              <div class="avatar">
-                <img src="./assets/avatar-placeholder.png" alt="Avatar" />
-              </div>
-              <div>
-                <h1>Natalia Kudryavtseva</h1>
-                <p class="role">Software Engineer · frontend-focused · UX-minded</p>
-              </div>
-            </div>
-            <nav class="socials" aria-label="Social links">
-              <a class="social telegram" href="https://t.me/kranski" target="_blank" rel="noreferrer" aria-label="Telegram">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M22 2L11 13" />
-                  <path d="M22 2L15 22l-4-9-9-4 20-7z" />
-                </svg>
-              </a>
-              <a class="social github" href="https://github.com/Nataly4444" target="_blank" rel="noreferrer" aria-label="GitHub">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 19c-4.5 1.5-4.5-2.5-6-3" />
-                  <path d="M15 22v-3.5c0-1 .1-1.6-.5-2.3 2.3-.3 4.7-1.1 4.7-5a3.9 3.9 0 0 0-1-2.7c.1-.3.4-1.4-.1-2.8 0 0-.8-.3-2.7 1a9.3 9.3 0 0 0-4.8 0c-1.9-1.3-2.7-1-2.7-1-.5 1.4-.2 2.5-.1 2.8a3.9 3.9 0 0 0-1 2.7c0 3.9 2.4 4.7 4.7 5-.3.3-.5.8-.5 1.6V22" />
-                </svg>
-              </a>
-              <a class="social linkedin" href="https://www.linkedin.com/in/natalia-kudriavtseva-944779a1/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 9v11" />
-                  <path d="M4 6.5a1.5 1.5 0 1 0 0-.01" />
-                  <path d="M8 9v11" />
-                  <path d="M8 13c0-2 1.3-4 3.8-4 2.7 0 3.7 2 3.7 5v6" />
-                </svg>
-              </a>
-              <a class="social email" href="mailto:kudryavtsevanatali@gmail.com" aria-label="Email">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 6h16v12H4z" />
-                  <path d="M4 7l8 6 8-6" />
-                </svg>
-              </a>
-              <a class="social habr" href="https://career.habr.com/kranski4" target="_blank" rel="noreferrer" aria-label="Habr Career">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M6 5v14" />
-                  <path d="M18 5v14" />
-                  <path d="M6 12h12" />
-                </svg>
-              </a>
-            </nav>
-          </div>
-
-          <div class="grid" role="list">
-            <div class="card" role="listitem">
-              <h2>What I build</h2>
-              <ul>
-                <li>Web apps with strong UX and polished UI details</li>
-                <li>Frontend architecture, design systems, reusable components</li>
-                <li>Automation & practical AI/ML experiments</li>
-              </ul>
-            </div>
-
-            <div class="card" role="listitem">
-              <h2>Highlights</h2>
-              <ul>
-                <li>React · Vue · Svelte · TypeScript · Next.js · Nuxt.js · Three.js</li>
-                <li>Testing: Jest / Vitest / React Testing Library / Cypress</li>
-                <li>Deploy: Vercel / Netlify / Docker / CI-CD</li>
-              </ul>
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-header">
+            <div class="hero-avatar" aria-hidden="true"></div>
+            <div class="hero-name-block">
+              <h1 id="hero-title" class="hero-title" data-content="name"></h1>
+              <p class="hero-subtitle" data-content="title"></p>
             </div>
           </div>
-
-          <div class="skills">
-            <h2>Skills</h2>
-
-            <div class="skills-slider" id="skills">
-              <div class="skills-grid" data-slider-track>
-              <div class="skill-card" style="--card-color: var(--c-violet)">
-                <div class="skill-title"><span class="dot"></span> Frontend</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#61DAFB"><img class="pill-icon" src="https://skillicons.dev/icons?i=react" alt="" />React</span>
-                  <span class="skill-pill" style="--pill:#41B883"><img class="pill-icon" src="https://skillicons.dev/icons?i=vue" alt="" />Vue.js</span>
-                  <span class="skill-pill" style="--pill:#FF3E00"><img class="pill-icon" src="https://skillicons.dev/icons?i=svelte" alt="" />Svelte</span>
-                  <span class="skill-pill" style="--pill:#3178C6"><img class="pill-icon" src="https://skillicons.dev/icons?i=ts" alt="" />TypeScript</span>
-                  <span class="skill-pill" style="--pill:#ffffff"><img class="pill-icon" src="https://skillicons.dev/icons?i=nextjs" alt="" />Next.js</span>
-                  <span class="skill-pill" style="--pill:#00DC82"><img class="pill-icon" src="https://skillicons.dev/icons?i=nuxtjs" alt="" />Nuxt.js</span>
-                  <span class="skill-pill" style="--pill:#ffffff"><img class="pill-icon" src="https://skillicons.dev/icons?i=express" alt="" />Express.js</span>
-                  <span class="skill-pill" style="--pill:#E0234E"><img class="pill-icon" src="https://skillicons.dev/icons?i=nestjs" alt="" />Nest.js</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-cyan)">
-                <div class="skill-title"><span class="dot cyan"></span> State management</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#41B883">Vuex</span>
-                  <span class="skill-pill" style="--pill:#764ABC"><img class="pill-icon" src="https://skillicons.dev/icons?i=redux" alt="" />Redux</span>
-                  <span class="skill-pill" style="--pill:#FF9955">MobX</span>
-                  <span class="skill-pill" style="--pill:#FFD859"><img class="pill-icon" src="https://skillicons.dev/icons?i=pinia" alt="" />Pinia</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-magenta)">
-                <div class="skill-title"><span class="dot magenta"></span> Styling</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#E34F26"><img class="pill-icon" src="https://skillicons.dev/icons?i=html" alt="" />HTML</span>
-                  <span class="skill-pill" style="--pill:#1572B6"><img class="pill-icon" src="https://skillicons.dev/icons?i=css" alt="" />CSS</span>
-                  <span class="skill-pill" style="--pill:#CC6699"><img class="pill-icon" src="https://skillicons.dev/icons?i=sass" alt="" />Sass (SCSS)</span>
-                  <span class="skill-pill" style="--pill:#9b9b9b">Stylus</span>
-                  <span class="skill-pill" style="--pill:#38BDF8"><img class="pill-icon" src="https://skillicons.dev/icons?i=tailwind" alt="" />Tailwind CSS</span>
-                  <span class="skill-pill" style="--pill:#7952B3"><img class="pill-icon" src="https://skillicons.dev/icons?i=bootstrap" alt="" />Bootstrap</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-mint)">
-                <div class="skill-title"><span class="dot mint"></span> Testing</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#C21325"><img class="pill-icon" src="https://skillicons.dev/icons?i=jest" alt="" />Jest</span>
-                  <span class="skill-pill" style="--pill:#6E9F18"><img class="pill-icon" src="https://skillicons.dev/icons?i=vitest" alt="" />Vitest</span>
-                  <span class="skill-pill" style="--pill:#E33332">React Testing Library</span>
-                  <span class="skill-pill" style="--pill:#69D3A7"><img class="pill-icon" src="https://skillicons.dev/icons?i=cypress" alt="" />Cypress</span>
-                  <span class="skill-pill" style="--pill:#2EAD33"><svg class="pill-icon" viewBox="0 0 24 24" aria-hidden="true" fill="#2EAD33" xmlns="http://www.w3.org/2000/svg"><path d="M23.996 7.462c-.056.837-.257 2.135-.716 3.85-.995 3.715-4.27 10.874-10.42 9.227-6.15-1.65-5.407-9.487-4.412-13.201.46-1.716.934-2.94 1.305-3.694.42-.853.846-.289 1.815.523.684.573 2.41 1.791 5.011 2.488 2.601.697 4.706.506 5.583.352 1.245-.219 1.897-.494 1.834.455Zm-9.807 3.863s-.127-1.819-1.773-2.286c-1.644-.467-2.613 1.04-2.613 1.04Zm4.058 4.539-7.769-2.172s.446 2.306 3.338 3.153c2.862.836 4.43-.98 4.43-.981Zm2.701-2.51s-.13-1.818-1.773-2.286c-1.644-.469-2.612 1.038-2.612 1.038ZM8.57 18.23c-4.749 1.279-7.261-4.224-8.021-7.08C.197 9.831.044 8.832.003 8.188c-.047-.73.455-.52 1.415-.354.677.118 2.3.261 4.308-.28a11.28 11.28 0 0 0 2.41-.956c-.058.197-.114.4-.17.61-.433 1.618-.827 4.055-.632 6.426-1.976.732-2.267 2.423-2.267 2.423l2.524-.715c.227 1.002.6 1.987 1.15 2.838a5.914 5.914 0 0 1-.171.049Zm-4.188-6.298c1.265-.333 1.363-1.631 1.363-1.631l-3.374.888s.745 1.076 2.01.743Z"/></svg>Playwright</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-violet)">
-                <div class="skill-title"><span class="dot"></span> Build / Dev tools</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#4B32C3"><img class="pill-icon" src="https://cdn.simpleicons.org/eslint/4B32C3" alt="" />ESLint</span>
-                  <span class="skill-pill" style="--pill:#F7B93E"><img class="pill-icon" src="https://skillicons.dev/icons?i=prettier" alt="" />Prettier</span>
-                  <span class="skill-pill" style="--pill:#ffffff">Husky</span>
-                  <span class="skill-pill" style="--pill:#999999">lint-staged</span>
-                  <span class="skill-pill" style="--pill:#CB3837"><img class="pill-icon" src="https://skillicons.dev/icons?i=npm" alt="" />npm</span>
-                  <span class="skill-pill" style="--pill:#F69220"><img class="pill-icon" src="https://skillicons.dev/icons?i=pnpm" alt="" />pnpm</span>
-                  <span class="skill-pill" style="--pill:#2C8EBB"><img class="pill-icon" src="https://skillicons.dev/icons?i=yarn" alt="" />yarn</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-cyan)">
-                <div class="skill-title"><span class="dot cyan"></span> API / Data fetching</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#00C2FF">REST API</span>
-                  <span class="skill-pill" style="--pill:#5A29E4">Axios</span>
-                  <span class="skill-pill" style="--pill:#FF4154">TanStack Query (React Query)</span>
-                  <span class="skill-pill" style="--pill:#ffffff">SWR</span>
-                  <span class="skill-pill" style="--pill:#7B5EA7">Apollo Client</span>
-                  <span class="skill-pill" style="--pill:#2596BE">tRPC</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-magenta)">
-                <div class="skill-title"><span class="dot magenta"></span> UI libraries</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#007FFF">Material UI</span>
-                  <span class="skill-pill" style="--pill:#1677FF">Ant Design</span>
-                  <span class="skill-pill" style="--pill:#319795">Chakra UI</span>
-                  <span class="skill-pill" style="--pill:#ffffff">Radix UI</span>
-                  <span class="skill-pill" style="--pill:#ffffff">shadcn/ui</span>
-                  <span class="skill-pill" style="--pill:#66E3FF">Headless UI</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-mint)">
-                <div class="skill-title"><span class="dot mint"></span> Architecture</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#A3A3A3">SPA / SSR / SSG</span>
-                  <span class="skill-pill" style="--pill:#A3A3A3">Micro-frontends</span>
-                  <span class="skill-pill" style="--pill:#A3A3A3">Component-driven development</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-violet)">
-                <div class="skill-title"><span class="dot"></span> Animation / Graphics</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#ff2ea6">Framer Motion</span>
-                  <span class="skill-pill" style="--pill:#88CE02">GSAP</span>
-                  <span class="skill-pill" style="--pill:#ffffff">Three.js</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-cyan)">
-                <div class="skill-title"><span class="dot cyan"></span> Web fundamentals</div>
-                <div class="skill-list">
-                  <span class="skill-pill">Web Performance Optimization</span>
-                  <span class="skill-pill" style="--pill:#F44B21">Lighthouse</span>
-                  <span class="skill-pill" style="--pill:#4285F4">Core Web Vitals</span>
-                  <span class="skill-pill" style="--pill:#00C2FF">Accessibility (a11y)</span>
-                  <span class="skill-pill" style="--pill:#34A853">SEO basics</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-magenta)">
-                <div class="skill-title"><span class="dot magenta"></span> DB / Backend services</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#4169E1"><img class="pill-icon" src="https://skillicons.dev/icons?i=postgres" alt="" />PostgreSQL</span>
-                  <span class="skill-pill" style="--pill:#4479A1"><img class="pill-icon" src="https://skillicons.dev/icons?i=mysql" alt="" />MySQL</span>
-                  <span class="skill-pill" style="--pill:#E10098">GraphQL</span>
-                  <span class="skill-pill" style="--pill:#4945FF">Strapi</span>
-                  <span class="skill-pill" style="--pill:#47A248"><img class="pill-icon" src="https://skillicons.dev/icons?i=mongodb" alt="" />MongoDB</span>
-                  <span class="skill-pill" style="--pill:#3ECF8E"><img class="pill-icon" src="https://skillicons.dev/icons?i=supabase" alt="" />Supabase</span>
-                  <span class="skill-pill" style="--pill:#FFCA28"><img class="pill-icon" src="https://skillicons.dev/icons?i=firebase" alt="" />Firebase</span>
-                  <span class="skill-pill" style="--pill:#ffffff">Convex</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-mint)">
-                <div class="skill-title"><span class="dot mint"></span> Bundlers</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#8DD6F9"><img class="pill-icon" src="https://skillicons.dev/icons?i=webpack" alt="" />Webpack</span>
-                  <span class="skill-pill" style="--pill:#646CFF"><img class="pill-icon" src="https://skillicons.dev/icons?i=vite" alt="" />Vite</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-violet)">
-                <div class="skill-title"><span class="dot"></span> Deployment / Hosting</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#ffffff">Vercel</span>
-                  <span class="skill-pill" style="--pill:#00C7B7">Netlify</span>
-                  <span class="skill-pill" style="--pill:#2496ED"><img class="pill-icon" src="https://skillicons.dev/icons?i=docker" alt="" />Docker</span>
-                  <span class="skill-pill">CI/CD (GitHub Actions / GitLab CI)</span>
-                </div>
-              </div>
-
-              <div class="skill-card" style="--card-color: var(--c-cyan)">
-                <div class="skill-title"><span class="dot cyan"></span> Version control</div>
-                <div class="skill-list">
-                  <span class="skill-pill" style="--pill:#ffffff"><img class="pill-icon" src="https://skillicons.dev/icons?i=github" alt="" />GitHub</span>
-                  <span class="skill-pill" style="--pill:#FC6D26"><img class="pill-icon" src="https://skillicons.dev/icons?i=gitlab" alt="" />GitLab</span>
-                  <span class="skill-pill" style="--pill:#2684FF">Bitbucket</span>
-                </div>
-              </div>
-            </div>
+          <p class="hero-tagline" data-content="tagline"></p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Get in Touch</a>
+            <a href="#" class="btn btn-secondary" data-link="github" target="_blank" rel="noopener noreferrer">
+              View GitHub
+              <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3 3L13 13M13 13V5M13 13H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
           </div>
-
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <script src="js/main.js" defer></script>
-  </body>
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title" class="section-title">About</h2>
+        <div class="about-content">
+          <p class="about-text" data-content="about"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section section-alt" aria-labelledby="skills-title">
+      <div class="container">
+        <h2 id="skills-title" class="section-title">Skills</h2>
+        <div class="skills-grid" data-skills></div>
+      </div>
+    </section>
+
+    <section id="projects" class="section" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 id="projects-title" class="section-title">Featured Projects</h2>
+        <div class="projects-grid" data-projects></div>
+      </div>
+    </section>
+
+    <section id="experience" class="section section-alt" aria-labelledby="experience-title">
+      <div class="container">
+        <h2 id="experience-title" class="section-title">Experience</h2>
+        <div class="timeline" data-experience></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 id="contact-title" class="section-title">Get in Touch</h2>
+        <div class="contact-content">
+          <p class="contact-text">I'm always open to discussing new opportunities, interesting projects, or just having a chat about frontend development.</p>
+          <div class="contact-links">
+            <a href="#" class="contact-link" data-link="email">
+              <svg class="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span data-contact="email"></span>
+            </a>
+            <button class="btn btn-copy" data-copy-email aria-label="Copy email to clipboard">
+              <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5.5 4.5H3.5C3.23478 4.5 2.98043 4.60536 2.79289 4.79289C2.60536 4.98043 2.5 5.23478 2.5 5.5V12.5C2.5 12.7652 2.60536 13.0196 2.79289 13.2071C2.98043 13.3946 3.23478 13.5 3.5 13.5H10.5C10.7652 13.5 11.0196 13.3946 11.2071 13.2071C11.3946 13.0196 11.5 12.7652 11.5 12.5V10.5M5.5 10.5H12.5C13.0523 10.5 13.5 10.0523 13.5 9.5V2.5C13.5 1.94772 13.0523 1.5 12.5 1.5H5.5C4.94772 1.5 4.5 1.94772 4.5 2.5V9.5C4.5 10.0523 4.94772 10.5 5.5 10.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Copy Email
+            </button>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-link" data-link="github" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" data-link="telegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" data-link="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p class="footer-text">&copy; <span data-year></span> <span data-content="name"></span>. Built with performance and accessibility in mind.</p>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true" data-toast>
+    <p class="toast-message" data-toast-message></p>
+  </div>
+</body>
 </html>
