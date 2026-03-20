@@ -3,12 +3,20 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 async function loadContent() {
   try {
     const response = await fetch('/content.json');
-    const data = await response.json();
-    return data;
+    if (response.ok) return await response.json();
   } catch (error) {
-    console.error('Failed to load content:', error);
-    return null;
+    console.error('Failed to load content from /content.json:', error);
   }
+
+  try {
+    const response = await fetch('/public/content.json');
+    if (response.ok) return await response.json();
+    console.error('Failed to load content from /public/content.json:', response.status);
+  } catch (error) {
+    console.error('Failed to load content from /public/content.json:', error);
+  }
+
+  return null;
 }
 
 function populateBasicContent(data) {
@@ -29,7 +37,12 @@ function populateBasicContent(data) {
   document.querySelectorAll('[data-link]').forEach(el => {
     const key = el.getAttribute('data-link');
     if (data.contacts && data.contacts[key]) {
-      el.href = data.contacts[key];
+      const value = data.contacts[key];
+      if (key === 'email') {
+        el.href = value.startsWith('mailto:') ? value : `mailto:${value}`;
+      } else {
+        el.href = value;
+      }
     }
   });
 
