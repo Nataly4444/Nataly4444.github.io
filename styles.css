@@ -156,6 +156,11 @@ body {
   color: var(--color-text-primary);
 }
 
+.nav-link:focus,
+.nav-link:focus-visible {
+  outline: none;
+}
+
 .nav-link::after {
   content: '';
   position: absolute;

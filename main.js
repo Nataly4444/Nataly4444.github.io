@@ -424,6 +424,12 @@ function setupAccessibility() {
   
   focusableElements.forEach(el => {
     el.addEventListener('focus', () => {
+      if (el.classList && el.classList.contains('nav-link')) {
+        el.style.outline = 'none';
+        el.style.outlineOffset = '';
+        return;
+      }
+
       el.style.outline = '2px solid rgba(255, 255, 255, 0.95)';
       el.style.outlineOffset = '2px';
     });
