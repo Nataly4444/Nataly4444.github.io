@@ -52,6 +52,7 @@ function populateBasicContent(data) {
     heroAvatar.style.backgroundSize = 'cover';
     heroAvatar.style.backgroundPosition = 'center';
     heroAvatar.style.backgroundRepeat = 'no-repeat';
+    heroAvatar.setAttribute('aria-label', 'Profile photo');
   }
 
   const yearEl = document.querySelector('[data-year]');
