@@ -314,6 +314,14 @@ body {
   background-color: var(--color-surface);
 }
 
+.section-skills {
+  padding: 1.5rem 0 1.25rem;
+}
+
+.section-skills .section-title {
+  margin-bottom: 1rem;
+}
+
 .section-title {
   font-size: 2rem;
   font-weight: 700;
@@ -326,6 +334,10 @@ body {
     font-size: 2.5rem;
     margin-bottom: 2rem;
   }
+  
+  .section-skills .section-title {
+    margin-bottom: 1.25rem;
+  }
 }
 
 .about-text {
@@ -335,34 +347,37 @@ body {
   max-width: 100%;
 }
 
+.skills-slider {
+  position: relative;
+  padding: 1rem 0 0;
+  min-height: 240px;
+  overflow: visible;
+}
+
+.skills-slider-track {
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x proximity;
+  padding: 0.5rem 0;
+  container-type: inline-size;
+  container-name: skills-track;
+  touch-action: pan-x;
+  cursor: grab;
+}
+
+.skills-slider-track::-webkit-scrollbar {
+  display: none;
+}
+
 .skills-grid {
   display: flex;
   align-items: stretch;
   gap: 1.5rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
-  padding-bottom: 1rem;
-}
-
-.skills-grid::-webkit-scrollbar {
-  height: 6px;
-}
-
-.skills-grid::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.skills-grid::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
-}
-
-.skills-grid::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  padding: 0;
 }
 
 @media (max-width: 767px) {
@@ -372,23 +387,30 @@ body {
 }
 
 .skill-category {
-  min-width: 280px;
-  width: 360px;
+  flex: 0 0 380px;
+  flex: 0 0 calc((100cqw - 2 * 1.5rem) / 3);
+  min-width: 0;
   padding: 1.25rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
-  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-self: stretch;
+  scroll-snap-align: start;
 }
 
-@media (max-width: 767px) {
+@container skills-track (max-width: 900px) {
   .skill-category {
-    min-width: 160px;
-    width: 160px;
+    flex: 0 0 calc((100cqw - 1.5rem) / 2);
+  }
+}
+
+@container skills-track (max-width: 600px) {
+  .skill-category {
+    flex: 0 0 calc(100cqw - 2rem);
+    min-width: 200px;
     padding: 1rem;
   }
 }

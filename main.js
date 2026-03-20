@@ -72,6 +72,141 @@ function populateSkills(data) {
   `).join('');
 
   skillsContainer.innerHTML = html;
+  setupSkillsSlider();
+}
+
+function setupSkillsSlider() {
+  const track = document.querySelector('.skills-slider-track');
+  const grid = document.querySelector('.skills-grid');
+  if (!track || !grid) return;
+
+  const cards = grid.querySelectorAll('.skill-category');
+  const cardCount = cards.length;
+  if (cardCount === 0) return;
+
+  cards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.classList.add('skill-category-clone');
+    grid.appendChild(clone);
+  });
+
+  const allCards = grid.querySelectorAll('.skill-category');
+
+  function getOriginalSetWidth() {
+    return allCards[cardCount]?.offsetLeft ?? 0;
+  }
+
+  let currentIndex = 0;
+  let autoScrollTimer = null;
+  const INTERVAL = 5000;
+
+  function scrollToIndex(index, useClone = false) {
+    if (index >= cardCount) index = 0;
+    if (index < 0) index = cardCount - 1;
+    currentIndex = index;
+    const targetCard = useClone ? allCards[cardCount + index] : allCards[index];
+    const offset = targetCard ? targetCard.offsetLeft : 0;
+    track.scrollTo({ left: offset, behavior: 'smooth' });
+  }
+
+  function startAutoScroll() {
+    stopAutoScroll();
+    autoScrollTimer = setInterval(() => {
+      if (currentIndex === cardCount - 1) {
+        scrollToIndex(0, true);
+      } else {
+        scrollToIndex(currentIndex + 1);
+      }
+    }, INTERVAL);
+  }
+
+  function stopAutoScroll() {
+    if (autoScrollTimer) {
+      clearInterval(autoScrollTimer);
+      autoScrollTimer = null;
+    }
+  }
+
+  let userScrollTimeout = null;
+  let isResetting = false;
+  function onUserScroll() {
+    stopAutoScroll();
+    if (userScrollTimeout) clearTimeout(userScrollTimeout);
+    userScrollTimeout = setTimeout(() => {
+      userScrollTimeout = null;
+      startAutoScroll();
+    }, 3000);
+  }
+
+  track.addEventListener('scroll', () => {
+    if (isResetting) return;
+    const setWidth = getOriginalSetWidth();
+    if (setWidth > 0 && track.scrollLeft >= setWidth - 1) {
+      isResetting = true;
+      track.scrollLeft = track.scrollLeft - setWidth;
+      requestAnimationFrame(() => { isResetting = false; });
+    }
+    const scrollLeft = track.scrollLeft;
+    let closest = 0;
+    let minDist = Infinity;
+    for (let i = 0; i < cardCount; i++) {
+      const card = allCards[i];
+      const dist = Math.abs(card.offsetLeft - scrollLeft);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = i;
+      }
+    }
+    currentIndex = closest;
+  });
+
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const delta = startX - e.pageX;
+    track.scrollLeft = startScrollLeft + delta;
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.cursor = '';
+    track.style.userSelect = '';
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
+  };
+
+  track.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    isDragging = true;
+    startX = e.pageX;
+    startScrollLeft = track.scrollLeft;
+    track.style.cursor = 'grabbing';
+    track.style.userSelect = 'none';
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    onUserScroll();
+  });
+
+  track.addEventListener('touchstart', onUserScroll, { passive: true });
+  track.addEventListener('wheel', onUserScroll, { passive: true });
+
+  track.addEventListener('wheel', (e) => {
+    if (e.deltaY === 0 || track.scrollWidth <= track.clientWidth) return;
+    const atStart = track.scrollLeft <= 0;
+    const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
+    if ((atStart && e.deltaY < 0) || (atEnd && e.deltaY > 0)) return;
+    e.preventDefault();
+    track.scrollLeft += e.deltaY;
+  }, { passive: false });
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(startAutoScroll);
+  });
 }
 
 function populateProjects(data) {
