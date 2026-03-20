@@ -99,24 +99,75 @@ function setupSkillsSlider() {
   let currentIndex = 0;
   let autoScrollTimer = null;
   const INTERVAL = 3000;
+  let isAutoScrolling = false;
+  let scrollEndTimeout = null;
 
-  function scrollToIndex(index, useClone = false) {
+  function scrollToIndex(index, useClone = false, behavior = 'smooth') {
     if (index >= cardCount) index = 0;
     if (index < 0) index = cardCount - 1;
     currentIndex = index;
     const targetCard = useClone ? allCards[cardCount + index] : allCards[index];
     const offset = targetCard ? targetCard.offsetLeft : 0;
-    track.scrollTo({ left: offset, behavior: 'smooth' });
+    track.scrollTo({ left: offset, behavior });
+  }
+
+  function getVirtualScrollLeft() {
+    const setWidth = getOriginalSetWidth();
+    let virtualLeft = track.scrollLeft;
+    if (setWidth > 0 && virtualLeft >= setWidth) virtualLeft -= setWidth;
+    return { virtualLeft, setWidth };
+  }
+
+  function updateCurrentIndexFromScroll() {
+    const { virtualLeft } = getVirtualScrollLeft();
+    let closest = 0;
+    let minDist = Infinity;
+    for (let i = 0; i < cardCount; i++) {
+      const card = allCards[i];
+      const dist = Math.abs(card.offsetLeft - virtualLeft);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = i;
+      }
+    }
+    currentIndex = closest;
+  }
+
+  function normalizeScrollIfNeeded() {
+    const setWidth = getOriginalSetWidth();
+    if (setWidth > 0 && track.scrollLeft >= setWidth) {
+      track.scrollLeft = track.scrollLeft - setWidth;
+    }
   }
 
   function startAutoScroll() {
     stopAutoScroll();
     autoScrollTimer = setInterval(() => {
-      if (currentIndex === cardCount - 1) {
-        scrollToIndex(0, true);
-      } else {
-        scrollToIndex(currentIndex + 1);
+      updateCurrentIndexFromScroll();
+      const setWidth = getOriginalSetWidth();
+      if (setWidth <= 0) return;
+
+      const inCloneSet = track.scrollLeft >= setWidth - 1;
+      const currentAbsIndex = currentIndex + (inCloneSet ? cardCount : 0);
+      const nextAbsIndex = currentAbsIndex + 1;
+
+      isAutoScrolling = true;
+
+      if (nextAbsIndex >= cardCount * 2) {
+        scrollToIndex(0, false, 'auto');
+        normalizeScrollIfNeeded();
+        setTimeout(() => { isAutoScrolling = false; }, 300);
+        return;
       }
+
+      const nextIndex = nextAbsIndex % cardCount;
+      const nextUseClone = nextAbsIndex >= cardCount;
+      scrollToIndex(nextIndex, nextUseClone, 'smooth');
+
+      setTimeout(() => {
+        normalizeScrollIfNeeded();
+        isAutoScrolling = false;
+      }, 800);
     }, INTERVAL);
   }
 
@@ -125,10 +176,10 @@ function setupSkillsSlider() {
       clearInterval(autoScrollTimer);
       autoScrollTimer = null;
     }
+    isAutoScrolling = false;
   }
 
   let userScrollTimeout = null;
-  let isResetting = false;
   function onUserScroll() {
     stopAutoScroll();
     if (userScrollTimeout) clearTimeout(userScrollTimeout);
@@ -139,25 +190,11 @@ function setupSkillsSlider() {
   }
 
   track.addEventListener('scroll', () => {
-    if (isResetting) return;
-    const setWidth = getOriginalSetWidth();
-    if (setWidth > 0 && track.scrollLeft >= setWidth - 1) {
-      isResetting = true;
-      track.scrollLeft = track.scrollLeft - setWidth;
-      requestAnimationFrame(() => { isResetting = false; });
-    }
-    const scrollLeft = track.scrollLeft;
-    let closest = 0;
-    let minDist = Infinity;
-    for (let i = 0; i < cardCount; i++) {
-      const card = allCards[i];
-      const dist = Math.abs(card.offsetLeft - scrollLeft);
-      if (dist < minDist) {
-        minDist = dist;
-        closest = i;
-      }
-    }
-    currentIndex = closest;
+    updateCurrentIndexFromScroll();
+    if (scrollEndTimeout) clearTimeout(scrollEndTimeout);
+    scrollEndTimeout = setTimeout(() => {
+      if (!isAutoScrolling) normalizeScrollIfNeeded();
+    }, 150);
   });
 
   let isDragging = false;
@@ -193,13 +230,13 @@ function setupSkillsSlider() {
   });
 
   track.addEventListener('touchstart', onUserScroll, { passive: true });
-  track.addEventListener('wheel', onUserScroll, { passive: true });
 
   track.addEventListener('wheel', (e) => {
-    if (e.deltaY === 0 || track.scrollWidth <= track.clientWidth) return;
-    const atStart = track.scrollLeft <= 0;
-    const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
-    if ((atStart && e.deltaY < 0) || (atEnd && e.deltaY > 0)) return;
+    if (e.deltaY === 0) return;
+    if (track.scrollWidth <= track.clientWidth) return;
+
+    onUserScroll();
+
     e.preventDefault();
     track.scrollLeft += e.deltaY;
   }, { passive: false });
