@@ -98,9 +98,8 @@ function setupSkillsSlider() {
 
   let currentIndex = 0;
   let autoScrollTimer = null;
-  const INTERVAL = 3000;
+  const INTERVAL = 2000;
   let isAutoScrolling = false;
-  let scrollEndTimeout = null;
 
   function scrollToIndex(index, useClone = false, behavior = 'smooth') {
     if (index >= cardCount) index = 0;
@@ -133,13 +132,6 @@ function setupSkillsSlider() {
     currentIndex = closest;
   }
 
-  function normalizeScrollIfNeeded() {
-    const setWidth = getOriginalSetWidth();
-    if (setWidth > 0 && track.scrollLeft >= setWidth) {
-      track.scrollLeft = track.scrollLeft - setWidth;
-    }
-  }
-
   function startAutoScroll() {
     stopAutoScroll();
     autoScrollTimer = setInterval(() => {
@@ -150,24 +142,12 @@ function setupSkillsSlider() {
       const inCloneSet = track.scrollLeft >= setWidth - 1;
       const currentAbsIndex = currentIndex + (inCloneSet ? cardCount : 0);
       const nextAbsIndex = currentAbsIndex + 1;
-
-      isAutoScrolling = true;
-
-      if (nextAbsIndex >= cardCount * 2) {
-        scrollToIndex(0, false, 'auto');
-        normalizeScrollIfNeeded();
-        setTimeout(() => { isAutoScrolling = false; }, 300);
-        return;
-      }
-
       const nextIndex = nextAbsIndex % cardCount;
       const nextUseClone = nextAbsIndex >= cardCount;
-      scrollToIndex(nextIndex, nextUseClone, 'smooth');
 
-      setTimeout(() => {
-        normalizeScrollIfNeeded();
-        isAutoScrolling = false;
-      }, 800);
+      isAutoScrolling = true;
+      scrollToIndex(nextIndex, nextUseClone, 'smooth');
+      setTimeout(() => { isAutoScrolling = false; }, 500);
     }, INTERVAL);
   }
 
@@ -191,10 +171,6 @@ function setupSkillsSlider() {
 
   track.addEventListener('scroll', () => {
     updateCurrentIndexFromScroll();
-    if (scrollEndTimeout) clearTimeout(scrollEndTimeout);
-    scrollEndTimeout = setTimeout(() => {
-      if (!isAutoScrolling) normalizeScrollIfNeeded();
-    }, 150);
   });
 
   let isDragging = false;
