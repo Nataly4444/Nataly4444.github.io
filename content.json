@@ -1,8 +1,8 @@
 {
   "name": "Natalia Kudryavtseva",
-  "title": "Senior Frontend / Software Engineer",
-  "tagline": "Building modern web applications with focus on performance, accessibility, and exceptional user experience. Specialized in React/Next.js ecosystem and design systems.",
-  "about": "Senior Frontend Engineer with expertise in building scalable web applications and design systems. I focus on delivering high-performance, accessible solutions that balance technical excellence with user needs. My work spans from architecting component libraries to optimizing production applications for millions of users.",
+  "title": "Senior Software Engineer",
+  "tagline": "Turning complex ideas into fast, scalable web applications\nFocused on architecture, performance, and user experience",
+  "about": "<p><strong>Senior Software Engineer focused on building scalable, high-performance digital products.</strong></p><p>I design and develop applications across platforms, with a strong emphasis on <strong>architecture, performance, and user experience.</strong></p><p>My work includes building <strong>design systems</strong>, improving application performance, and shaping <strong>maintainable frontend architectures</strong> for complex products. I aim to create systems that scale effectively and remain robust as complexity grows.</p>",
   "contacts": {
     "email": "kranki@mail.ru",
     "github": "https://github.com/yourusername",

@@ -23,7 +23,11 @@ function populateBasicContent(data) {
   document.querySelectorAll('[data-content]').forEach(el => {
     const key = el.getAttribute('data-content');
     if (data[key]) {
-      el.textContent = data[key];
+      if (key === 'about') {
+        el.innerHTML = data[key];
+      } else {
+        el.textContent = data[key];
+      }
     }
   });
 
