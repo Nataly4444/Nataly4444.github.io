@@ -17,95 +17,84 @@
       "Svelte",
       "TypeScript",
       "Next.js",
-      "Nuxt.js",
-      "Express.js",
-      "Nest.js"
+      "Nuxt.js (SPA / SSR / SSG)"
     ],
-    "State management": [
-      "Vuex",
+    "State Management": [
       "Redux",
       "MobX",
-      "Pinia"
+      "Pinia",
+      "TanStack Query",
+      "SWR"
     ],
-    "Styling": [
-      "HTML",
-      "CSS",
-      "Sass (SCSS)",
-      "Stylus",
+    "Styling & UI": [
       "Tailwind CSS",
+      "SCSS",
+      "shadcn/UI",
+      "Headless UI",
+      "Material UI",
+      "Chakra UI",
+      "Ant Design",
+      "Radix UI",
+      "Styled Components",
       "Bootstrap"
     ],
-    "Testing": [
+    "Testing & Quality": [
       "Jest",
       "Vitest",
       "React Testing Library",
       "Cypress",
-      "Playwright"
-    ],
-    "Build / Dev tools": [
+      "Playwright",
       "ESLint",
       "Prettier",
       "Husky",
       "lint-staged",
-      "npm",
-      "pnpm",
-      "yarn"
+          "Zod",
+      "Yup"
     ],
-    "API / Data fetching": [
+    "Backend & APIs": [
+      "Node.js (Express.js, Nest.js)",
       "REST API",
-      "Axios",
-      "TanStack Query",
-      "SWR",
-      "Apollo Client",
-      "tRPC"
-    ],
-    "UI libraries": [
-      "Material UI",
-      "Ant Design",
-      "Chakra UI",
-      "Radix UI",
-      "shadcn/ui",
-      "Headless UI"
-    ],
-    "Architecture": [
-      "SPA / SSR / SSG",
-      "Micro-frontends",
-      "Component-driven development"
-    ],
-    "Animation / Graphics": [
-      "Framer Motion",
-      "GSAP",
-      "Three.js"
-    ],
-    "Web fundamentals": [
-      "Web Performance Optimization",
-      "Lighthouse",
-      "Core Web Vitals",
-      "Accessibility (a11y)",
-      "SEO basics"
-    ],
-    "DB / Backend services": [
+      "GraphQL (Apollo Client / Server)",
+      "tRPC",
       "PostgreSQL",
-      "MySQL",
-      "GraphQL",
-      "Strapi",
       "MongoDB",
+      "MySQL",
+      "Prisma",
       "Supabase",
       "Firebase",
-      "Convex"
+      "Convex",
+      "Strapi"
     ],
-    "Bundlers": [
+    "AI & Integrations": [
+      "LLM APIs (OpenAI, Anthropic)",
+      "LangChain",
+      "LlamaIndex",
+      "RAG pipelines (vector databases, retrieval, evaluation)",
+      "AI feature integration (frontend + backend)"
+    ],
+    "Build & Deployment": [
       "Webpack",
-      "Vite"
-    ],
-    "Deployment / Hosting": [
-      "Vercel",
-      "Netlify",
+      "Vite",
       "Docker",
-      "CI/CD (GitHub Actions)",
-      "GitLab CI"
+      "CI/CD (GitHub Actions / GitLab CI)",
+      "Vercel",
+      "Netlify"
     ],
-    "Version control": [
+    "Architecture & Best Practices": [
+      "Component-driven development",
+      "Storybook",
+      "Micro-frontends",
+      "Web Performance Optimization",
+      "Accessibility (a11y)",
+      "Core Web Vitals",
+      "SEO basics"
+    ],
+    "Cloud / Edge": [
+      "Cloudflare",
+      "AWS Lambda",
+      "Edge Functions"
+    ],
+    "Version Control": [
       "GitHub",
       "GitLab",
       "Bitbucket"
