@@ -321,6 +321,16 @@ body {
   padding: 5rem 0;
 }
 
+#contact.section {
+  padding: 3rem 0;
+}
+
+@media (max-width: 767px) {
+  #contact.section {
+    padding: 3.25rem 0;
+  }
+}
+
 .section-alt {
   background-color: var(--color-surface);
 }
@@ -716,7 +726,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
 }
 
 .contact-links-left {
