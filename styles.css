@@ -700,7 +700,7 @@ body {
 }
 
 .contact-content {
-  max-width: var(--max-width-narrow);
+  max-width: 100%;
 }
 
 .contact-text {
@@ -712,13 +712,21 @@ body {
 
 .contact-links {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-xl);
 }
 
+.contact-links-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
 @media (min-width: 768px) {
-  .contact-links {
+  .contact-links-left {
     flex-direction: row;
     align-items: center;
   }
@@ -760,6 +768,31 @@ body {
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   text-decoration: none;
+  position: relative;
+}
+
+.social-link[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 0.375rem 0.75rem;
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.social-link[data-tooltip]:hover::after,
+.social-link[data-tooltip]:focus::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .social-link:hover,
