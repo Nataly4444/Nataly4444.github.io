@@ -785,6 +785,21 @@ body {
   position: relative;
 }
 
+.social-link svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  transform-origin: 50% 50%;
+}
+
+.social-link[data-link="telegram"] svg {
+  transform: scale(1.12);
+}
+
+.social-link[data-link="habr"] svg {
+  transform: scale(1.15);
+}
+
 .social-link[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
