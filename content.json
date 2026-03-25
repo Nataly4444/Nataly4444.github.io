@@ -1,0 +1,193 @@
+{
+  "name": "Natalia Kudryavtseva",
+  "title": "Senior Software Engineer",
+  "tagline": "Building scalable, high-performance digital products\nFocused on architecture, performance, and user experience",
+  "about": "<p><strong>Senior Software Engineer focused on building scalable, high-performance digital products.</strong></p><p>I design and develop applications across platforms, with a strong emphasis on <strong>architecture, performance, and user experience.</strong></p><p>My work includes building <strong>design systems</strong>, improving application performance, and shaping <strong>maintainable frontend architectures</strong> for complex products. I aim to create systems that scale effectively and remain robust as complexity grows.</p>",
+  "contacts": {
+    "email": "kranki@mail.ru",
+    "github": "https://github.com/Nataly4444",
+    "telegram": "https://t.me/kranski",
+    "linkedin": "https://www.linkedin.com/in/natalia-kudryavtseva-944779a1/",
+    "habr": "https://career.habr.com/kranski4"
+  },
+  "skills": {
+    "Frontend": [
+      "React",
+      "Vue.js",
+      "Svelte",
+      "TypeScript",
+      "Next.js",
+      "Nuxt.js (SPA / SSR / SSG)"
+    ],
+    "State Management": [
+      "Redux",
+      "MobX",
+      "Pinia",
+      "TanStack Query",
+      "SWR"
+    ],
+    "Styling & UI": [
+      "Tailwind CSS",
+      "SCSS",
+      "shadcn/UI",
+      "Headless UI",
+      "Material UI",
+      "Chakra UI",
+      "Ant Design",
+      "Radix UI",
+      "Styled Components",
+      "Bootstrap"
+    ],
+    "Testing & Quality": [
+      "Jest",
+      "Vitest",
+      "React Testing Library",
+      "Cypress",
+      "Playwright",
+      "ESLint",
+      "Prettier",
+      "Husky",
+      "lint-staged",
+      "Zod",
+      "Yup"
+    ],
+    "Backend & APIs": [
+      "Node.js (Express.js, Nest.js)",
+      "REST API",
+      "GraphQL (Apollo Client / Server)",
+      "tRPC",
+      "PostgreSQL",
+      "MongoDB",
+      "MySQL",
+      "Prisma",
+      "Supabase",
+      "Firebase",
+      "Convex",
+      "Strapi"
+    ],
+    "AI & Integrations": [
+      "LLM APIs (OpenAI, Anthropic)",
+      "LangChain",
+      "LlamaIndex",
+      "RAG pipelines (vector databases, retrieval, evaluation)",
+      "AI feature integration (frontend + backend)"
+    ],
+    "Build & Deployment": [
+      "Webpack",
+      "Vite",
+      "Docker",
+      "CI/CD (GitHub Actions / GitLab CI)",
+      "Vercel",
+      "Netlify"
+    ],
+    "Architecture & Best Practices": [
+      "Component-driven development",
+      "Storybook",
+      "Micro-frontends",
+      "Web Performance Optimization",
+      "Accessibility (a11y)",
+      "Core Web Vitals",
+      "SEO basics"
+    ],
+    "Cloud / Edge": [
+      "Cloudflare",
+      "AWS Lambda",
+      "Edge Functions"
+    ],
+    "Version Control": [
+      "GitHub",
+      "GitLab",
+      "Bitbucket"
+    ]
+  },
+  "projects": [
+    {
+      "title": "MyDiary",
+      "subtitle": "Personal Health & Productivity Tracker",
+      "description": "Full-stack web application for habit tracking, daily planning, and health monitoring with PWA capabilities.",
+      "role": "Full-Stack Engineer",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "PWA"
+      ],
+      "highlights": [
+        "Built complete CRUD system with API routes and database schema design",
+        "Implemented PWA with offline support and cache versioning",
+        "Created editable card system with real-time updates",
+        "Deployed production-ready app on Vercel with CI/CD pipeline"
+      ],
+      "links": {
+        "demo": "#",
+        "github": "#"
+      }
+    },
+    {
+      "title": "Roberto / OpenClaw",
+      "subtitle": "AI-Powered Personal Assistant",
+      "description": "Automation system with offline voice transcription and intelligent task management through Telegram interface.",
+      "role": "Backend Engineer & ML Integration",
+      "stack": [
+        "Python",
+        "Whisper",
+        "faster-whisper",
+        "Telegram Bot API"
+      ],
+      "highlights": [
+        "Integrated offline speech-to-text pipeline with Whisper models",
+        "Built background job processing system for productivity workflows",
+        "Designed command interface for seamless voice-to-action automation",
+        "Optimized transcription performance for real-time use cases"
+      ],
+      "links": {
+        "github": "#"
+      }
+    },
+    {
+      "title": "GitHub Profile & Portfolio",
+      "subtitle": "Custom Design System",
+      "description": "Minimal, performance-focused portfolio with custom design system and optimized asset delivery.",
+      "role": "Frontend Engineer & Designer",
+      "stack": [
+        "HTML5",
+        "CSS3",
+        "Vanilla JS",
+        "Vite"
+      ],
+      "highlights": [
+        "Achieved Lighthouse score 95+ across all metrics",
+        "Implemented CSS variable-based theming system",
+        "Optimized for accessibility with semantic HTML and ARIA",
+        "Created versioned asset caching strategy"
+      ],
+      "links": {
+        "demo": "#",
+        "github": "#"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "title": "Senior Frontend Engineer",
+      "company": "Your Company",
+      "period": "2022 - Present",
+      "highlights": [
+        "Led development of design system used across 10+ products",
+        "Improved web vitals scores by 40% through performance optimization",
+        "Mentored junior engineers on React best practices and architecture"
+      ]
+    },
+    {
+      "title": "Frontend Engineer",
+      "company": "Previous Company",
+      "period": "2019 - 2022",
+      "highlights": [
+        "Built customer-facing dashboard with React and TypeScript",
+        "Implemented accessibility improvements achieving WCAG 2.1 AA compliance",
+        "Collaborated with design team on component library"
+      ]
+    }
+  ]
+}
