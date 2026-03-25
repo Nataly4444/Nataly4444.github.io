@@ -25,3 +25,6 @@ pnpm-debug.log*
 # Editor/IDE
 .idea/
 .vscode/
+
+# Pencil files
+pencil-new.pen
