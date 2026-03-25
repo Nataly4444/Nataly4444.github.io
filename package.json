@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "sync-content": "cp public/content.json content.json"
+    "preview": "vite preview"
   },
   "devDependencies": {
     "vite": "^5.0.0"
