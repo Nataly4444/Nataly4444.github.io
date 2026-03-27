@@ -334,6 +334,12 @@ body {
   }
 }
 
+@media (max-width: 767px) {
+  #about.section {
+    padding-top: 0;
+  }
+}
+
 .section-alt {
   background-color: var(--color-surface);
 }
