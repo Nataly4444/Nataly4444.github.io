@@ -326,12 +326,6 @@ body {
   white-space: pre-line;
 }
 
-@media (max-width: 767px) {
-  .hero-tagline {
-    font-size: 1rem;
-  }
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
