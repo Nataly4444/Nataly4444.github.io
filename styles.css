@@ -127,11 +127,19 @@ body {
 }
 
 .nav-logo {
-  font-size: 1.125rem;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   color: var(--color-text-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
+}
+
+.nav-logo-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: block;
 }
 
 .nav-logo:hover,
