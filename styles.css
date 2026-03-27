@@ -399,7 +399,6 @@ body {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  scroll-snap-type: x proximity;
   padding: 0.5rem 0;
   container-type: inline-size;
   container-name: skills-track;
@@ -409,14 +408,6 @@ body {
 
 .skills-slider-track::-webkit-scrollbar {
   display: none;
-}
-
-.skills-slider-track--auto-scroll {
-  scroll-snap-type: none;
-}
-
-.skills-slider-track--auto-scroll .skill-category {
-  scroll-snap-align: none;
 }
 
 .skills-grid {
@@ -444,7 +435,6 @@ body {
   display: flex;
   flex-direction: column;
   align-self: stretch;
-  scroll-snap-align: start;
 }
 
 @container skills-track (max-width: 900px) {

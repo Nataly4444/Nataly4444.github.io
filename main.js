@@ -97,13 +97,44 @@ function setupSkillsSlider() {
 
   const allCards = grid.querySelectorAll('.skill-category');
 
-  function getOriginalSetWidth() {
-    return allCards[cardCount]?.offsetLeft ?? 0;
+  function contentScrollLeftForCard(card) {
+    return card.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
+  }
+
+  let loopWidth = 0;
+  let dupAlignScroll = 0;
+
+  function refreshLoopMetrics() {
+    const first = allCards[0];
+    const dup = allCards[cardCount];
+    if (!first || !dup) return;
+    const home = contentScrollLeftForCard(first);
+    const dupPos = contentScrollLeftForCard(dup);
+    const w = dupPos - home;
+    if (w > 1) {
+      loopWidth = w;
+      dupAlignScroll = dupPos;
+    }
+  }
+
+  function normalizeCarouselScrollPosition() {
+    if (loopWidth <= 0 || dupAlignScroll <= 0) return;
+    const prevBeh = track.style.scrollBehavior;
+    track.style.scrollBehavior = 'auto';
+    let guard = 0;
+    while (track.scrollLeft >= dupAlignScroll - 0.5 && guard < 48) {
+      track.scrollLeft -= loopWidth;
+      guard += 1;
+    }
+    track.style.scrollBehavior = prevBeh;
   }
 
   let currentIndex = 0;
-  let autoScrollTimer = null;
+  let autoSlideIndex = 0;
+  let autoNextStepTimer = null;
+  let autoAfterScrollTimer = null;
   const INTERVAL = 2000;
+  const AUTO_SETTLE_MS = 1200;
   let isAutoScrolling = false;
 
   function scrollToIndex(index, useClone = false, behavior = 'smooth') {
@@ -111,24 +142,17 @@ function setupSkillsSlider() {
     if (index < 0) index = cardCount - 1;
     currentIndex = index;
     const targetCard = useClone ? allCards[cardCount + index] : allCards[index];
-    const offset = targetCard ? targetCard.offsetLeft : 0;
-    track.scrollTo({ left: offset, behavior });
-  }
-
-  function getVirtualScrollLeft() {
-    const setWidth = getOriginalSetWidth();
-    let virtualLeft = track.scrollLeft;
-    if (setWidth > 0 && virtualLeft >= setWidth) virtualLeft -= setWidth;
-    return { virtualLeft, setWidth };
+    if (!targetCard) return;
+    const left = contentScrollLeftForCard(targetCard);
+    track.scrollTo({ left, behavior });
   }
 
   function updateCurrentIndexFromScroll() {
-    const { virtualLeft } = getVirtualScrollLeft();
+    const sl = track.scrollLeft;
     let closest = 0;
     let minDist = Infinity;
     for (let i = 0; i < cardCount; i++) {
-      const card = allCards[i];
-      const dist = Math.abs(card.offsetLeft - virtualLeft);
+      const dist = Math.abs(contentScrollLeftForCard(allCards[i]) - sl);
       if (dist < minDist) {
         minDist = dist;
         closest = i;
@@ -137,29 +161,56 @@ function setupSkillsSlider() {
     currentIndex = closest;
   }
 
+  function runAutoScrollStep() {
+    autoNextStepTimer = null;
+    const stepStart = Date.now();
+    refreshLoopMetrics();
+    if (loopWidth <= 0) {
+      autoNextStepTimer = setTimeout(runAutoScrollStep, INTERVAL);
+      return;
+    }
+
+    normalizeCarouselScrollPosition();
+
+    const nextIndex = (autoSlideIndex + 1) % cardCount;
+    const nextUseClone = autoSlideIndex === cardCount - 1 && nextIndex === 0;
+
+    if (autoAfterScrollTimer) {
+      clearTimeout(autoAfterScrollTimer);
+      autoAfterScrollTimer = null;
+    }
+
+    isAutoScrolling = true;
+    scrollToIndex(nextIndex, nextUseClone, 'smooth');
+    autoSlideIndex = nextIndex;
+
+    autoAfterScrollTimer = setTimeout(() => {
+      autoAfterScrollTimer = null;
+      try {
+        refreshLoopMetrics();
+        normalizeCarouselScrollPosition();
+        updateCurrentIndexFromScroll();
+      } finally {
+        isAutoScrolling = false;
+        const wait = Math.max(0, INTERVAL - (Date.now() - stepStart));
+        autoNextStepTimer = setTimeout(runAutoScrollStep, wait);
+      }
+    }, AUTO_SETTLE_MS);
+  }
+
   function startAutoScroll() {
     stopAutoScroll();
-    autoScrollTimer = setInterval(() => {
-      updateCurrentIndexFromScroll();
-      const setWidth = getOriginalSetWidth();
-      if (setWidth <= 0) return;
-
-      const inCloneSet = track.scrollLeft >= setWidth - 1;
-      const currentAbsIndex = currentIndex + (inCloneSet ? cardCount : 0);
-      const nextAbsIndex = currentAbsIndex + 1;
-      const nextIndex = nextAbsIndex % cardCount;
-      const nextUseClone = nextAbsIndex >= cardCount;
-
-      isAutoScrolling = true;
-      scrollToIndex(nextIndex, nextUseClone, 'smooth');
-      setTimeout(() => { isAutoScrolling = false; }, 500);
-    }, INTERVAL);
+    autoNextStepTimer = setTimeout(runAutoScrollStep, INTERVAL);
   }
 
   function stopAutoScroll() {
-    if (autoScrollTimer) {
-      clearInterval(autoScrollTimer);
-      autoScrollTimer = null;
+    if (autoNextStepTimer) {
+      clearTimeout(autoNextStepTimer);
+      autoNextStepTimer = null;
+    }
+    if (autoAfterScrollTimer) {
+      clearTimeout(autoAfterScrollTimer);
+      autoAfterScrollTimer = null;
     }
     isAutoScrolling = false;
   }
@@ -170,13 +221,32 @@ function setupSkillsSlider() {
     if (userScrollTimeout) clearTimeout(userScrollTimeout);
     userScrollTimeout = setTimeout(() => {
       userScrollTimeout = null;
+      refreshLoopMetrics();
+      normalizeCarouselScrollPosition();
+      updateCurrentIndexFromScroll();
+      autoSlideIndex = currentIndex;
       startAutoScroll();
     }, 3000);
   }
 
+  let carouselScrollSettleTimer = null;
   track.addEventListener('scroll', () => {
     updateCurrentIndexFromScroll();
+    if (carouselScrollSettleTimer) clearTimeout(carouselScrollSettleTimer);
+    carouselScrollSettleTimer = setTimeout(() => {
+      carouselScrollSettleTimer = null;
+      if (!isAutoScrolling && loopWidth > 0 && track.scrollLeft >= dupAlignScroll - 1) {
+        refreshLoopMetrics();
+        normalizeCarouselScrollPosition();
+        updateCurrentIndexFromScroll();
+      }
+    }, 150);
   });
+
+  const ro = new ResizeObserver(() => {
+    refreshLoopMetrics();
+  });
+  ro.observe(track);
 
   let isDragging = false;
   let startX = 0;
@@ -200,6 +270,7 @@ function setupSkillsSlider() {
 
   track.addEventListener('mousedown', (e) => {
     if (e.button !== 0) return;
+    if (e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents) return;
     isDragging = true;
     startX = e.pageX;
     startScrollLeft = track.scrollLeft;
@@ -210,7 +281,20 @@ function setupSkillsSlider() {
     onUserScroll();
   });
 
-  track.addEventListener('touchstart', onUserScroll, { passive: true });
+  let touchSliderScrollLeft = null;
+  track.addEventListener('touchstart', (e) => {
+    if (!e.isTrusted) return;
+    touchSliderScrollLeft = track.scrollLeft;
+  }, { passive: true });
+  const endTouchSlider = (e) => {
+    if (!e.isTrusted || touchSliderScrollLeft === null) return;
+    if (Math.abs(track.scrollLeft - touchSliderScrollLeft) > 6) {
+      onUserScroll();
+    }
+    touchSliderScrollLeft = null;
+  };
+  track.addEventListener('touchend', endTouchSlider, { passive: true });
+  track.addEventListener('touchcancel', endTouchSlider, { passive: true });
 
   track.addEventListener('wheel', (e) => {
     if (e.deltaY === 0) return;
@@ -222,11 +306,12 @@ function setupSkillsSlider() {
     track.scrollLeft += e.deltaY;
   }, { passive: false });
 
-  if (!prefersReducedMotion) {
+  requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      requestAnimationFrame(startAutoScroll);
+      refreshLoopMetrics();
+      if (!prefersReducedMotion) startAutoScroll();
     });
-  }
+  });
 }
 
 
