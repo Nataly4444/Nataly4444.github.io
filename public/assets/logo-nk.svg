@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="NK">
+  <title>NK</title>
+  <!-- Transparent background by design -->
+  <text x="50%" y="50%"
+        text-anchor="middle"
+        dominant-baseline="central"
+        fill="#ffffff"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+        font-weight="800"
+        font-size="34"
+        letter-spacing="-1.5">NK</text>
+</svg>
