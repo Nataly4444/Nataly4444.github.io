@@ -814,6 +814,19 @@ body {
   transform: scale(1.15);
 }
 
+.social-link[data-link="emailGmail"] svg {
+  overflow: visible;
+  transform: scale(1.12);
+}
+
+.social-link[data-link="emailGmail"] path {
+  stroke: currentColor;
+  stroke-width: 0.7;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  paint-order: stroke fill;
+}
+
 .social-link[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
@@ -925,27 +938,6 @@ body {
   text-align: center;
   color: var(--color-text-tertiary);
   font-size: 0.875rem;
-}
-
-.toast {
-  position: fixed;
-  bottom: var(--spacing-lg);
-  right: var(--spacing-lg);
-  padding: var(--spacing-md) var(--spacing-lg);
-  background: var(--color-accent);
-  color: var(--color-bg);
-  border-radius: var(--radius-md);
-  font-weight: 500;
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: all var(--transition-base);
-  pointer-events: none;
-  z-index: 100;
-}
-
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 @media print {

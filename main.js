@@ -34,7 +34,7 @@ function populateBasicContent(data) {
     const key = el.getAttribute('data-link');
     if (data.contacts && data.contacts[key]) {
       const value = data.contacts[key];
-      if (key === 'email') {
+      if (key === 'email' || key === 'emailGmail') {
         el.href = value.startsWith('mailto:') ? value : `mailto:${value}`;
       } else {
         el.href = value;
@@ -350,53 +350,6 @@ function setupSmoothScroll() {
   });
 }
 
-function showToast(message, duration = 3000) {
-  const toast = document.querySelector('[data-toast]');
-  const toastMessage = document.querySelector('[data-toast-message]');
-  
-  if (!toast || !toastMessage) return;
-  
-  toastMessage.textContent = message;
-  toast.classList.add('show');
-  
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, duration);
-}
-
-function setupCopyEmail() {
-  const copyButton = document.querySelector('[data-copy-email]');
-  if (!copyButton) return;
-
-  copyButton.addEventListener('click', async () => {
-    const emailElement = document.querySelector('[data-contact="email"]');
-    if (!emailElement) return;
-
-    const email = emailElement.textContent;
-    
-    try {
-      await navigator.clipboard.writeText(email);
-      showToast('Email copied to clipboard!');
-    } catch (err) {
-      const textArea = document.createElement('textarea');
-      textArea.value = email;
-      textArea.style.position = 'fixed';
-      textArea.style.left = '-999999px';
-      document.body.appendChild(textArea);
-      textArea.select();
-      
-      try {
-        document.execCommand('copy');
-        showToast('Email copied to clipboard!');
-      } catch (err) {
-        showToast('Failed to copy email');
-      }
-      
-      document.body.removeChild(textArea);
-    }
-  });
-}
-
 function setupAccessibility() {
   document.querySelectorAll('a[target="_blank"]').forEach(link => {
     if (!link.getAttribute('rel')) {
@@ -417,7 +370,6 @@ async function init() {
   
   setupNavigation();
   setupSmoothScroll();
-  setupCopyEmail();
   setupAccessibility();
 }
 
