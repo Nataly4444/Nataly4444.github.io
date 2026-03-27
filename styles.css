@@ -411,6 +411,14 @@ body {
   display: none;
 }
 
+.skills-slider-track--auto-scroll {
+  scroll-snap-type: none;
+}
+
+.skills-slider-track--auto-scroll .skill-category {
+  scroll-snap-align: none;
+}
+
 .skills-grid {
   display: flex;
   align-items: stretch;
@@ -752,6 +760,18 @@ body {
   gap: var(--spacing-md);
   margin-bottom: 0;
   flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .contact-links {
+    flex-basis: 100%;
+  }
+
+  .contact-links .social-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
+  }
 }
 
 .contact-links-left {
