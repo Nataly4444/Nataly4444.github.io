@@ -806,6 +806,11 @@ body {
   transform-origin: 50% 50%;
 }
 
+.social-link[data-link="email"] svg {
+  overflow: visible;
+  transform: scale(1.22);
+}
+
 .social-link[data-link="telegram"] svg {
   transform: scale(1.12);
 }
