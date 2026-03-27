@@ -89,6 +89,14 @@ function setupSkillsSlider() {
   const cardCount = cards.length;
   if (cardCount === 0) return;
 
+  const headFrag = document.createDocumentFragment();
+  cards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.classList.add('skill-category-clone');
+    headFrag.appendChild(clone);
+  });
+  grid.insertBefore(headFrag, grid.firstChild);
+
   cards.forEach(card => {
     const clone = card.cloneNode(true);
     clone.classList.add('skill-category-clone');
@@ -96,6 +104,8 @@ function setupSkillsSlider() {
   });
 
   const allCards = grid.querySelectorAll('.skill-category');
+  const origOffset = cardCount;
+  const dupOffset = cardCount * 2;
 
   function contentScrollLeftForCard(card) {
     return card.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
@@ -103,12 +113,15 @@ function setupSkillsSlider() {
 
   let loopWidth = 0;
   let dupAlignScroll = 0;
+  let loopStartScroll = 0;
 
   function refreshLoopMetrics() {
-    const first = allCards[0];
-    const dup = allCards[cardCount];
-    if (!first || !dup) return;
-    const home = contentScrollLeftForCard(first);
+    const firstOrig = allCards[origOffset];
+    const dup = allCards[dupOffset];
+    const loopHead = allCards[0];
+    if (!firstOrig || !dup || !loopHead) return;
+    loopStartScroll = contentScrollLeftForCard(loopHead);
+    const home = contentScrollLeftForCard(firstOrig);
     const dupPos = contentScrollLeftForCard(dup);
     const w = dupPos - home;
     if (w > 1) {
@@ -118,12 +131,17 @@ function setupSkillsSlider() {
   }
 
   function normalizeCarouselScrollPosition() {
-    if (loopWidth <= 0 || dupAlignScroll <= 0) return;
+    if (loopWidth <= 0) return;
     const prevBeh = track.style.scrollBehavior;
     track.style.scrollBehavior = 'auto';
     let guard = 0;
     while (track.scrollLeft >= dupAlignScroll - 0.5 && guard < 48) {
       track.scrollLeft -= loopWidth;
+      guard += 1;
+    }
+    guard = 0;
+    while (track.scrollLeft <= loopStartScroll + 0.5 && guard < 48) {
+      track.scrollLeft += loopWidth;
       guard += 1;
     }
     track.style.scrollBehavior = prevBeh;
@@ -141,7 +159,7 @@ function setupSkillsSlider() {
     if (index >= cardCount) index = 0;
     if (index < 0) index = cardCount - 1;
     currentIndex = index;
-    const targetCard = useClone ? allCards[cardCount + index] : allCards[index];
+    const targetCard = useClone ? allCards[dupOffset + index] : allCards[origOffset + index];
     if (!targetCard) return;
     const left = contentScrollLeftForCard(targetCard);
     track.scrollTo({ left, behavior });
@@ -152,7 +170,7 @@ function setupSkillsSlider() {
     let closest = 0;
     let minDist = Infinity;
     for (let i = 0; i < cardCount; i++) {
-      const dist = Math.abs(contentScrollLeftForCard(allCards[i]) - sl);
+      const dist = Math.abs(contentScrollLeftForCard(allCards[origOffset + i]) - sl);
       if (dist < minDist) {
         minDist = dist;
         closest = i;
@@ -235,7 +253,7 @@ function setupSkillsSlider() {
     if (carouselScrollSettleTimer) clearTimeout(carouselScrollSettleTimer);
     carouselScrollSettleTimer = setTimeout(() => {
       carouselScrollSettleTimer = null;
-      if (!isAutoScrolling && loopWidth > 0 && track.scrollLeft >= dupAlignScroll - 1) {
+      if (!isAutoScrolling && loopWidth > 0 && (track.scrollLeft >= dupAlignScroll - 1 || track.scrollLeft <= loopStartScroll + 1)) {
         refreshLoopMetrics();
         normalizeCarouselScrollPosition();
         updateCurrentIndexFromScroll();
@@ -303,12 +321,33 @@ function setupSkillsSlider() {
     onUserScroll();
 
     e.preventDefault();
-    track.scrollLeft += e.deltaY;
+    refreshLoopMetrics();
+    let next = track.scrollLeft + e.deltaY;
+    if (loopWidth > 0) {
+      let guard = 0;
+      while (next < loopStartScroll - 0.5 && guard < 48) {
+        next += loopWidth;
+        guard += 1;
+      }
+      guard = 0;
+      while (next >= dupAlignScroll - 0.5 && guard < 48) {
+        next -= loopWidth;
+        guard += 1;
+      }
+    }
+    track.scrollLeft = next;
   }, { passive: false });
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       refreshLoopMetrics();
+      const firstOrig = allCards[origOffset];
+      if (firstOrig && loopWidth > 0) {
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft = contentScrollLeftForCard(firstOrig);
+        track.style.scrollBehavior = '';
+        refreshLoopMetrics();
+      }
       if (!prefersReducedMotion) startAutoScroll();
     });
   });
