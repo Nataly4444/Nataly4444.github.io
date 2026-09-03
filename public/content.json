@@ -49,7 +49,7 @@
       "Prettier",
       "Husky",
       "lint-staged",
-          "Zod",
+      "Zod",
       "Yup"
     ],
     "Backend & APIs": [
@@ -103,53 +103,115 @@
   },
   "projects": [
     {
-      "title": "MyDiary",
-      "subtitle": "Personal Health & Productivity Tracker",
-      "description": "Full-stack web application for habit tracking, daily planning, and health monitoring with PWA capabilities.",
-      "role": "Full-Stack Engineer",
-      "stack": ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "PWA"],
-      "highlights": [
-        "Built complete CRUD system with API routes and database schema design",
-        "Implemented PWA with offline support and cache versioning",
-        "Created editable card system with real-time updates",
-        "Deployed production-ready app on Vercel with CI/CD pipeline"
+      "id": "rfid-warehouse",
+      "title": "RFID Warehouse",
+      "category": "Internal Tool",
+      "description": "Warehouse operations dashboard for inventory tracking, RFID events, and stock movement workflows.",
+      "focus": [
+        "Data-heavy operational UI",
+        "Inventory tables and filters",
+        "RFID event timeline",
+        "Responsive dashboard layout"
+      ],
+      "stack": [
+        "Nuxt 3"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/01-home-mobile.png",
+          "alt": "RFID Warehouse — Home dashboard",
+          "caption": "Home dashboard"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/02-receiving-mobile.png",
+          "alt": "RFID Warehouse — Receiving workflow",
+          "caption": "Receiving workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/03-receiving-device-list-mobile.png",
+          "alt": "RFID Warehouse — Receiving device selection",
+          "caption": "Receiving device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/04-inventory-mobile.png",
+          "alt": "RFID Warehouse — Inventory",
+          "caption": "Inventory"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/05-shipment-mobile.png",
+          "alt": "RFID Warehouse — Shipment workflow",
+          "caption": "Shipment workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/07-devices-mobile.png",
+          "alt": "RFID Warehouse — Device selection",
+          "caption": "Device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/10-settings-mobile.png",
+          "alt": "RFID Warehouse — Settings",
+          "caption": "Settings"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/11-users-list-mobile.png",
+          "alt": "RFID Warehouse — Users and roles",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/13-devices-list-mobile.png",
+          "alt": "RFID Warehouse — RFID readers",
+          "caption": "RFID readers"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/01-home-mobile.png",
+          "alt": "RFID Warehouse — Home dashboard",
+          "caption": "Home dashboard"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/02-receiving-mobile.png",
+          "alt": "RFID Warehouse — Receiving workflow",
+          "caption": "Receiving workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/03-receiving-device-list-mobile.png",
+          "alt": "RFID Warehouse — Receiving device selection",
+          "caption": "Receiving device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/04-inventory-mobile.png",
+          "alt": "RFID Warehouse — Inventory",
+          "caption": "Inventory"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/05-shipment-mobile.png",
+          "alt": "RFID Warehouse — Shipment workflow",
+          "caption": "Shipment workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/07-devices-mobile.png",
+          "alt": "RFID Warehouse — Device selection",
+          "caption": "Device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/10-settings-mobile.png",
+          "alt": "RFID Warehouse — Settings",
+          "caption": "Settings"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/11-users-list-mobile.png",
+          "alt": "RFID Warehouse — Users and roles",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/13-devices-list-mobile.png",
+          "alt": "RFID Warehouse — RFID readers",
+          "caption": "RFID readers"
+        }
       ],
       "links": {
-        "demo": "#",
-        "github": "#"
-      }
-    },
-    {
-      "title": "Roberto / OpenClaw",
-      "subtitle": "AI-Powered Personal Assistant",
-      "description": "Automation system with offline voice transcription and intelligent task management through Telegram interface.",
-      "role": "Backend Engineer & ML Integration",
-      "stack": ["Python", "Whisper", "faster-whisper", "Telegram Bot API"],
-      "highlights": [
-        "Integrated offline speech-to-text pipeline with Whisper models",
-        "Built background job processing system for productivity workflows",
-        "Designed command interface for seamless voice-to-action automation",
-        "Optimized transcription performance for real-time use cases"
-      ],
-      "links": {
-        "github": "#"
-      }
-    },
-    {
-      "title": "GitHub Profile & Portfolio",
-      "subtitle": "Custom Design System",
-      "description": "Minimal, performance-focused portfolio with custom design system and optimized asset delivery.",
-      "role": "Frontend Engineer & Designer",
-      "stack": ["HTML5", "CSS3", "Vanilla JS", "Vite"],
-      "highlights": [
-        "Achieved Lighthouse score 95+ across all metrics",
-        "Implemented CSS variable-based theming system",
-        "Optimized for accessibility with semantic HTML and ARIA",
-        "Created versioned asset caching strategy"
-      ],
-      "links": {
-        "demo": "#",
-        "github": "#"
+        "demo": "",
+        "github": "",
+        "caseStudy": ""
       }
     }
   ],
