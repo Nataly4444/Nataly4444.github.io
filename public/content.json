@@ -103,6 +103,117 @@
   },
   "projects": [
     {
+      "id": "hr-candidate-onboarding",
+      "title": "HR Candidate Onboarding System",
+      "category": "Internal HR Workflow Application",
+      "description": "Internal web application for collecting and validating candidate data during the hiring process, with phone authorization, multi-step forms, autosave, backend integration, and Bitrix workflow support.",
+      "focus": [
+        "Designed and built the UI system and reusable form components",
+        "Implemented the multi-step questionnaire flow with validation and autosave",
+        "Integrated the frontend with backend services and Bitrix-related HR workflow settings"
+      ],
+      "stack": [
+        "Next.js"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/projects/hr-project/01-login-phone-full.png",
+          "alt": "Phone authorization screen for candidate onboarding",
+          "caption": "Phone authorization"
+        },
+        {
+          "src": "/assets/projects/hr-project/02-login-code-full.png",
+          "alt": "SMS code verification screen for candidate onboarding",
+          "caption": "SMS code verification"
+        },
+        {
+          "src": "/assets/projects/hr-project/03-step-1-full.png",
+          "alt": "Step 1 of the candidate questionnaire",
+          "caption": "Step 1"
+        },
+        {
+          "src": "/assets/projects/hr-project/04-step-2-full.png",
+          "alt": "Step 2 of the candidate questionnaire",
+          "caption": "Step 2"
+        },
+        {
+          "src": "/assets/projects/hr-project/05-step-3-full.png",
+          "alt": "Step 3 of the candidate questionnaire",
+          "caption": "Step 3"
+        },
+        {
+          "src": "/assets/projects/hr-project/06-step-4-full.png",
+          "alt": "Step 4 of the candidate questionnaire",
+          "caption": "Step 4"
+        },
+        {
+          "src": "/assets/projects/hr-project/07-step-5-full.png",
+          "alt": "Step 5 of the candidate questionnaire",
+          "caption": "Step 5"
+        },
+        {
+          "src": "/assets/projects/hr-project/08-step-6-full.png",
+          "alt": "Step 6 of the candidate questionnaire",
+          "caption": "Step 6"
+        },
+        {
+          "src": "/assets/projects/hr-project/09-step-7-full.png",
+          "alt": "Step 7 of the candidate questionnaire",
+          "caption": "Step 7"
+        },
+        {
+          "src": "/assets/projects/hr-project/10-step-8-full.png",
+          "alt": "Step 8 of the candidate questionnaire",
+          "caption": "Step 8"
+        },
+        {
+          "src": "/assets/projects/hr-project/03-step-1-errors-full.png",
+          "alt": "Step 1 validation state in the candidate questionnaire",
+          "caption": "Step 1 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/04-step-2-errors-full.png",
+          "alt": "Step 2 validation state in the candidate questionnaire",
+          "caption": "Step 2 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/05-step-3-errors-full.png",
+          "alt": "Step 3 validation state in the candidate questionnaire",
+          "caption": "Step 3 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/06-step-4-errors-full.png",
+          "alt": "Step 4 validation state in the candidate questionnaire",
+          "caption": "Step 4 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/07-step-5-errors-full.png",
+          "alt": "Step 5 validation state in the candidate questionnaire",
+          "caption": "Step 5 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/08-step-6-errors-full.png",
+          "alt": "Step 6 validation state in the candidate questionnaire",
+          "caption": "Step 6 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/09-step-7-errors-full.png",
+          "alt": "Step 7 validation state in the candidate questionnaire",
+          "caption": "Step 7 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/10-step-8-errors-full.png",
+          "alt": "Step 8 validation state in the candidate questionnaire",
+          "caption": "Step 8 — validation"
+        }
+      ],
+      "links": {
+        "demo": "",
+        "github": "",
+        "caseStudy": ""
+      }
+    },
+    {
       "id": "rfid-warehouse",
       "title": "RFID Warehouse",
       "category": "Internal Tool",

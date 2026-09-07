@@ -394,6 +394,7 @@ function renderProjectCard(project) {
     <article class="project-card">
       <div class="project-card-top">
         <span class="project-category">${project.category}</span>
+        ${project.role ? `<span class="project-status">${project.role}</span>` : ''}
         ${project.status ? `<span class="project-status">${project.status}</span>` : ''}
       </div>
 
@@ -463,6 +464,7 @@ function renderProjectModalContent(project) {
           <div class="project-modal-header-text">
             <div class="project-card-top">
               <span class="project-category">${project.category}</span>
+              ${project.role ? `<span class="project-status">${project.role}</span>` : ''}
               ${project.status ? `<span class="project-status">${project.status}</span>` : ''}
             </div>
             <h3 id="project-modal-title" class="project-modal-title">${project.title}</h3>
