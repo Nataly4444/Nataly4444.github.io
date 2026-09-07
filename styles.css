@@ -632,6 +632,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.375rem;
+  margin-top: auto;
 }
 
 .project-tech {
@@ -648,7 +649,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1rem;
-  margin-top: auto;
   padding-top: 0.25rem;
 }
 

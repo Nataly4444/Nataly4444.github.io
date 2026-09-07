@@ -103,6 +103,188 @@
   },
   "projects": [
     {
+      "id": "cp-stonehedge",
+      "title": "Workforce Time Tracking & Operations System",
+      "category": "Internal Workforce Management Platform",
+      "description": "Internal operations platform for employee attendance tracking, work schedule management, absence processing, reporting, access control, and smart office lighting.",
+      "focus": [
+        "Built a data-heavy attendance dashboard with search, filters, status indicators, and infinite scrolling",
+        "Implemented employee, schedule, absence, vacation, and role management workflows",
+        "Developed XLSX reporting, activity logging, and role-based administration interfaces",
+        "Integrated the frontend with REST APIs and smart office lighting controllers"
+      ],
+      "stack": [
+        "Next.js"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/01-tracking-light.png",
+          "alt": "Attendance tracking dashboard",
+          "caption": "Attendance tracking"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/02-lighting-light.png",
+          "alt": "Smart office lighting control",
+          "caption": "Office lighting"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/03-reports-light.png",
+          "alt": "Reports page",
+          "caption": "Reports"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/04-logging-light.png",
+          "alt": "Activity logging page",
+          "caption": "Activity logging"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/05-users-light.png",
+          "alt": "Users and roles management",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/06-profile-light.png",
+          "alt": "User profile page",
+          "caption": "Profile"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/07-deleted-employees-light.png",
+          "alt": "Deleted employees page",
+          "caption": "Deleted employees"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/01-modal-employee-edit-light.png",
+          "alt": "Employee edit modal",
+          "caption": "Employee edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/02-modal-schedule-edit-light.png",
+          "alt": "Schedule edit modal",
+          "caption": "Schedule edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/03-modal-justification-light.png",
+          "alt": "Absence justification modal",
+          "caption": "Justification"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/05-modal-mass-absence-calendar-light.png",
+          "alt": "Mass absence calendar modal",
+          "caption": "Mass absence calendar"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/06-modal-justifications-editor-light.png",
+          "alt": "Justifications editor modal",
+          "caption": "Justifications editor"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/08-modal-work-day-confirm-light.png",
+          "alt": "Work day confirmation modal",
+          "caption": "Work day confirm"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/09-modal-user-edit-light.png",
+          "alt": "User edit modal",
+          "caption": "User edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/10-profile-editing-light.png",
+          "alt": "Profile editing modal",
+          "caption": "Profile editing"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/11-reports-employee-selector-light.png",
+          "alt": "Reports employee selector modal",
+          "caption": "Reports employee selector"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/01-tracking.png",
+          "alt": "Attendance tracking dashboard",
+          "caption": "Attendance tracking"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/02-lighting.png",
+          "alt": "Smart office lighting control",
+          "caption": "Office lighting"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/03-reports.png",
+          "alt": "Reports page",
+          "caption": "Reports"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/04-logging.png",
+          "alt": "Activity logging page",
+          "caption": "Activity logging"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/05-users.png",
+          "alt": "Users and roles management",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/06-profile.png",
+          "alt": "User profile page",
+          "caption": "Profile"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/07-deleted-employees.png",
+          "alt": "Deleted employees page",
+          "caption": "Deleted employees"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/08-modal-employee-edit.png",
+          "alt": "Employee edit modal",
+          "caption": "Employee edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/09-modal-schedule-edit.png",
+          "alt": "Schedule edit modal",
+          "caption": "Schedule edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/10-modal-justification.png",
+          "alt": "Absence justification modal",
+          "caption": "Justification"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/12-modal-mass-absence-calendar.png",
+          "alt": "Mass absence calendar modal",
+          "caption": "Mass absence calendar"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/13-modal-justifications-editor.png",
+          "alt": "Justifications editor modal",
+          "caption": "Justifications editor"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/15-modal-work-day-confirm.png",
+          "alt": "Work day confirmation modal",
+          "caption": "Work day confirm"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/16-modal-user-edit.png",
+          "alt": "User edit modal",
+          "caption": "User edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/17-profile-editing.png",
+          "alt": "Profile editing modal",
+          "caption": "Profile editing"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/18-reports-employee-selector.png",
+          "alt": "Reports employee selector modal",
+          "caption": "Reports employee selector"
+        }
+      ],
+      "links": {
+        "demo": "",
+        "github": "",
+        "caseStudy": ""
+      }
+    },
+    {
       "id": "hr-candidate-onboarding",
       "title": "HR Candidate Onboarding System",
       "category": "Internal HR Workflow Application",
