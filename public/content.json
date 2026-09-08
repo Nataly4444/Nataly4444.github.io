@@ -106,7 +106,7 @@
       "id": "cp-stonehedge",
       "title": "Workforce Time Tracking & Operations System",
       "category": "Internal Workforce Management Platform",
-      "description": "Internal operations platform for employee attendance tracking, work schedule management, absence processing, reporting, access control, and smart office lighting.",
+      "description": "Full-stack workforce operations platform for managing attendance, schedules, absences, reporting, access control, and smart office lighting in one internal system.",
       "focus": [
         "Built a data-heavy attendance dashboard with search, filters, status indicators, and infinite scrolling",
         "Implemented employee, schedule, absence, vacation, and role management workflows",
