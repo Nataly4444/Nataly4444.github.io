@@ -288,11 +288,13 @@
       "id": "hr-candidate-onboarding",
       "title": "HR Candidate Onboarding System",
       "category": "Internal HR Workflow Application",
-      "description": "Internal web application for collecting and validating candidate data during the hiring process, with phone authorization, multi-step forms, autosave, backend integration, and Bitrix workflow support.",
+      "description": "End-to-end HR onboarding platform with SMS authentication, multi-step candidate intake, conditional validation, and backend-driven form persistence.",
       "focus": [
-        "Designed and built the UI system and reusable form components",
-        "Implemented the multi-step questionnaire flow with validation and autosave",
-        "Integrated the frontend with backend services and Bitrix-related HR workflow settings"
+        "SMS login and verification flow",
+        "8-step dynamic onboarding questionnaire",
+        "Conditional fields and business rules",
+        "Auto-save and structured form submission",
+        "Server-side API proxy layer for auth and form operations"
       ],
       "stack": [
         "Next.js"
@@ -399,12 +401,13 @@
       "id": "rfid-warehouse",
       "title": "RFID Warehouse",
       "category": "Internal Tool",
-      "description": "Warehouse operations dashboard for inventory tracking, RFID events, and stock movement workflows.",
+      "description": "Warehouse operations platform with authenticated workflows, inventory management, and real-time scanner updates for operational control.",
       "focus": [
-        "Data-heavy operational UI",
-        "Inventory tables and filters",
-        "RFID event timeline",
-        "Responsive dashboard layout"
+        "Receiving, shipping, and inventory workflows",
+        "Auth-protected user and device management",
+        "Real-time scanner stream via SSE",
+        "Server-side API routes for warehouse operations",
+        "Seeded workflow scenarios for local testing and development"
       ],
       "stack": [
         "Nuxt 3"
