@@ -106,15 +106,13 @@
       "id": "cp-stonehedge",
       "title": "Workforce Time Tracking & Operations System",
       "category": "Internal Workforce Management Platform",
-      "description": "Full-stack workforce operations platform for managing attendance, schedules, absences, reporting, access control, and smart office lighting in one internal system.",
-      "focus": [
-        "Built a data-heavy attendance dashboard with search, filters, status indicators, and infinite scrolling",
-        "Implemented employee, schedule, absence, vacation, and role management workflows",
-        "Developed XLSX reporting, activity logging, and role-based administration interfaces",
-        "Integrated the frontend with REST APIs and smart office lighting controllers"
-      ],
+      "description": "Internal workforce operations platform for attendance, scheduling, absences, reporting, access control, and office lighting automation. I owned the core operational flows so employee data, admin actions, and reporting stayed consistent across the system, reducing manual reconciliation across attendance, absences, and scheduling.",
       "stack": [
-        "Next.js"
+        "Next.js",
+        "REST APIs",
+        "RBAC",
+        "XLSX exports",
+        "hardware integration"
       ],
       "screenshots": [
         {
@@ -288,16 +286,14 @@
       "id": "hr-candidate-onboarding",
       "title": "HR Candidate Onboarding System",
       "category": "Internal HR Workflow Application",
-      "description": "End-to-end HR onboarding platform with SMS authentication, multi-step candidate intake, conditional validation, and backend-driven form persistence.",
-      "focus": [
-        "SMS login and verification flow",
-        "8-step dynamic onboarding questionnaire",
-        "Conditional fields and business rules",
-        "Auto-save and structured form submission",
-        "Server-side API proxy layer for auth and form operations"
-      ],
+      "description": "End-to-end HR onboarding platform with SMS authentication, multi-step candidate intake, conditional validation, PHP backend persistence, and Bitrix integration. I owned the full delivery across frontend and backend: built the onboarding flow, implemented server-side authentication, wired structured form persistence, and made the workflow recoverable through autosave and recovery paths so candidate data stayed reliable across long sessions.",
       "stack": [
-        "Next.js"
+        "Next.js",
+        "PHP backend",
+        "Bitrix integration",
+        "server-side auth",
+        "autosave",
+        "conditional forms"
       ],
       "screenshots": [
         {
@@ -401,16 +397,13 @@
       "id": "rfid-warehouse",
       "title": "RFID Warehouse",
       "category": "Internal Tool",
-      "description": "Warehouse operations platform with authenticated workflows, inventory management, and real-time scanner updates for operational control.",
-      "focus": [
-        "Receiving, shipping, and inventory workflows",
-        "Auth-protected user and device management",
-        "Real-time scanner stream via SSE",
-        "Server-side API routes for warehouse operations",
-        "Seeded workflow scenarios for local testing and development"
-      ],
+      "description": "Warehouse operations platform with authenticated workflows, inventory management, and real-time RFID scanner updates. I built the operational flows for receiving, shipping, and device management, and added SSE-based live updates so warehouse state stayed synchronized in real time for operators and devices.",
       "stack": [
-        "Nuxt 3"
+        "Nuxt 3",
+        "SSE",
+        "REST APIs",
+        "authenticated workflows",
+        "RFID integration"
       ],
       "screenshots": [
         {

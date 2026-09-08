@@ -402,13 +402,6 @@ function renderProjectCard(project) {
 
       <p class="project-description">${project.description}</p>
 
-      <div class="project-focus">
-        <p class="project-focus-label">Focus</p>
-        <ul>
-          ${(project.focus || []).map(item => `<li>${item}</li>`).join('')}
-        </ul>
-      </div>
-
       <div class="project-stack">
         ${(project.stack || []).map(tech => `<span class="project-tech">${tech}</span>`).join('')}
       </div>
@@ -477,13 +470,6 @@ function renderProjectModalContent(project) {
         </div>
         <div class="project-modal-body">
           <p class="project-modal-description">${project.description}</p>
-
-          <div class="project-modal-section">
-            <h4 class="project-modal-section-title">Focus</h4>
-            <ul class="project-modal-focus-list">
-              ${(project.focus || []).map(item => `<li>${item}</li>`).join('')}
-            </ul>
-          </div>
 
           <div class="project-modal-section">
             <h4 class="project-modal-section-title">Stack</h4>
