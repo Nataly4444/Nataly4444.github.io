@@ -107,6 +107,20 @@
       "title": "Workforce Time Tracking & Operations System",
       "category": "Internal Workforce Management Platform",
       "description": "Internal workforce operations platform for attendance, scheduling, reporting, access control, and office automation.",
+      "businessValue": [
+        "Reduces manual attendance and absence tracking",
+        "Keeps workforce records consistent across admin workflows",
+        "Improves operational visibility through reporting",
+        "Connects office operations with digital control flows"
+      ],
+      "features": [
+        "Attendance tracking",
+        "Scheduling and absences",
+        "Reports and exports",
+        "Access control",
+        "Office lighting automation",
+        "Employee management"
+      ],
       "stack": [
         "Next.js",
         "PHP",
@@ -285,6 +299,20 @@
       "title": "HR Candidate Onboarding System",
       "category": "Internal HR Workflow Application",
       "description": "End-to-end HR onboarding platform with SMS authentication, autosave, conditional forms, backend persistence, and Bitrix integration.",
+      "businessValue": [
+        "Reduces manual candidate data collection",
+        "Improves data accuracy across long onboarding flows",
+        "Makes candidate intake recoverable with autosave and recovery paths",
+        "Connects onboarding data with internal HR processes"
+      ],
+      "features": [
+        "SMS authentication",
+        "Multi-step questionnaire",
+        "Conditional validation",
+        "Autosave",
+        "Backend persistence",
+        "Bitrix workflow integration"
+      ],
       "stack": [
         "Next.js",
         "PHP",
@@ -393,6 +421,20 @@
       "title": "RFID Warehouse",
       "category": "Internal Tool",
       "description": "Warehouse operations platform with inventory workflows, authenticated access, RFID scanner integration, and real-time device updates.",
+      "businessValue": [
+        "Improves real-time visibility into warehouse operations",
+        "Reduces manual inventory status checks",
+        "Keeps operators and RFID devices synchronized",
+        "Supports faster receiving and shipping workflows"
+      ],
+      "features": [
+        "Inventory tracking",
+        "Receiving workflow",
+        "Shipping workflow",
+        "RFID scanner updates",
+        "Device management",
+        "Authenticated operator flows"
+      ],
       "stack": [
         "Nuxt 3",
         "Server-Sent Events"

@@ -382,9 +382,23 @@ function renderProjectLinks(links, className = 'project-link') {
     `).join('');
 }
 
+function renderProjectListSection(title, items, className = 'project-list-section') {
+  if (!Array.isArray(items) || items.length === 0) return '';
+
+  return `
+    <div class="${className}">
+      ${title ? `<h4 class="project-list-section-title">${title}</h4>` : ''}
+      <ul class="project-list-section-list">
+        ${items.map(item => `<li class="project-list-section-item">${item}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+}
+
 function renderProjectCard(project) {
   const hasScreenshots = Array.isArray(project.screenshots) && project.screenshots.length > 0;
   const linksHtml = renderProjectLinks(project.links);
+  const businessValueHtml = renderProjectListSection('', project.businessValue);
 
   const previewButton = hasScreenshots
     ? `<button class="project-link project-link-button" type="button" data-action="view-preview" data-project-id="${project.id}">Preview</button>`
@@ -402,6 +416,8 @@ function renderProjectCard(project) {
 
       <p class="project-description">${project.description}</p>
 
+      ${businessValueHtml}
+
       <div class="project-stack">
         ${(project.stack || []).map(tech => `<span class="project-tech">${tech}</span>`).join('')}
       </div>
@@ -417,6 +433,16 @@ function renderProjectCard(project) {
 function renderProjectModalContent(project) {
   const hasScreenshots = Array.isArray(project.screenshots) && project.screenshots.length > 0;
   const linksHtml = renderProjectLinks(project.links, 'project-link project-modal-link');
+  const businessValueHtml = renderProjectListSection(
+    '',
+    project.businessValue,
+    'project-modal-section project-list-section'
+  );
+  const featuresHtml = renderProjectListSection(
+    'Features',
+    project.features,
+    'project-modal-section project-list-section'
+  );
 
   const screenshotsHtml = hasScreenshots
     ? `
@@ -470,6 +496,10 @@ function renderProjectModalContent(project) {
         </div>
         <div class="project-modal-body">
           <p class="project-modal-description">${project.description}</p>
+
+          ${businessValueHtml}
+
+          ${featuresHtml}
 
           <div class="project-modal-section">
             <h4 class="project-modal-section-title">Stack</h4>
