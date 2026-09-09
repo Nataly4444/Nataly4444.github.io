@@ -1,8 +1,8 @@
 {
   "name": "Natalia Kudryavtseva",
   "title": "Senior Software Engineer",
-  "tagline": "Building scalable, high-performance digital products\nFocused on architecture, performance, and user experience",
-  "about": "<p><strong>Senior Software Engineer focused on building scalable, high-performance digital products.</strong></p><p>I design and develop applications across platforms, with a strong emphasis on <strong>architecture, performance, and user experience.</strong></p><p>My work includes building <strong>design systems</strong>, improving application performance, and shaping <strong>maintainable frontend architectures</strong> for complex products. I aim to create systems that scale effectively and remain robust as complexity grows.</p>",
+  "tagline": "Building scalable digital products, complex web applications, and automation tools.",
+  "about": "<p><strong>Senior Software Engineer focused on building scalable web products, automation systems, and AI-powered tools.</strong></p><p>My work combines frontend architecture, product thinking, and business process automation. I design and develop applications that help teams reduce manual work, improve data reliability, and ship digital products faster.</p><p>I have experience building internal platforms, dashboards, onboarding systems, warehouse tools, and complex user interfaces with modern web technologies.</p>",
   "contacts": {
     "email": "kranki@mail.ru",
     "emailGmail": "kudriavtsevanatali@gmail.com",
@@ -18,7 +18,7 @@
       "Svelte",
       "TypeScript",
       "Next.js",
-      "Nuxt.js (SPA / SSR / SSG)"
+      "Nuxt.js"
     ],
     "State Management": [
       "Redux",
@@ -49,7 +49,7 @@
       "Prettier",
       "Husky",
       "lint-staged",
-          "Zod",
+      "Zod",
       "Yup"
     ],
     "Backend & APIs": [
@@ -103,53 +103,438 @@
   },
   "projects": [
     {
-      "title": "MyDiary",
-      "subtitle": "Personal Health & Productivity Tracker",
-      "description": "Full-stack web application for habit tracking, daily planning, and health monitoring with PWA capabilities.",
-      "role": "Full-Stack Engineer",
-      "stack": ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "PWA"],
-      "highlights": [
-        "Built complete CRUD system with API routes and database schema design",
-        "Implemented PWA with offline support and cache versioning",
-        "Created editable card system with real-time updates",
-        "Deployed production-ready app on Vercel with CI/CD pipeline"
+      "id": "rfid-warehouse",
+      "title": "RFID Warehouse",
+      "category": "Internal Tool",
+      "description": "Warehouse operations platform with inventory workflows, authenticated access, RFID scanner integration, and real-time device updates.",
+      "businessValue": [
+        "Improves real-time visibility into warehouse operations",
+        "Reduces manual inventory status checks",
+        "Keeps operators and RFID devices synchronized",
+        "Supports faster receiving and shipping workflows"
+      ],
+      "features": [
+        "Inventory tracking",
+        "Receiving workflow",
+        "Shipping workflow",
+        "RFID scanner updates",
+        "Device management",
+        "Authenticated operator flows"
+      ],
+      "stack": [
+        "Nuxt 3",
+        "Server-Sent Events"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/01-home-mobile.png",
+          "alt": "RFID Warehouse — Home dashboard",
+          "caption": "Home dashboard"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/02-receiving-mobile.png",
+          "alt": "RFID Warehouse — Receiving workflow",
+          "caption": "Receiving workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/03-receiving-device-list-mobile.png",
+          "alt": "RFID Warehouse — Receiving device selection",
+          "caption": "Receiving device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/04-inventory-mobile.png",
+          "alt": "RFID Warehouse — Inventory",
+          "caption": "Inventory"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/05-shipment-mobile.png",
+          "alt": "RFID Warehouse — Shipment workflow",
+          "caption": "Shipment workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/07-devices-mobile.png",
+          "alt": "RFID Warehouse — Device selection",
+          "caption": "Device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/10-settings-mobile.png",
+          "alt": "RFID Warehouse — Settings",
+          "caption": "Settings"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/11-users-list-mobile.png",
+          "alt": "RFID Warehouse — Users and roles",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/13-devices-list-mobile.png",
+          "alt": "RFID Warehouse — RFID readers",
+          "caption": "RFID readers"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/01-home-mobile.png",
+          "alt": "RFID Warehouse — Home dashboard",
+          "caption": "Home dashboard"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/02-receiving-mobile.png",
+          "alt": "RFID Warehouse — Receiving workflow",
+          "caption": "Receiving workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/03-receiving-device-list-mobile.png",
+          "alt": "RFID Warehouse — Receiving device selection",
+          "caption": "Receiving device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/04-inventory-mobile.png",
+          "alt": "RFID Warehouse — Inventory",
+          "caption": "Inventory"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/05-shipment-mobile.png",
+          "alt": "RFID Warehouse — Shipment workflow",
+          "caption": "Shipment workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/07-devices-mobile.png",
+          "alt": "RFID Warehouse — Device selection",
+          "caption": "Device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/10-settings-mobile.png",
+          "alt": "RFID Warehouse — Settings",
+          "caption": "Settings"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/11-users-list-mobile.png",
+          "alt": "RFID Warehouse — Users and roles",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/13-devices-list-mobile.png",
+          "alt": "RFID Warehouse — RFID readers",
+          "caption": "RFID readers"
+        }
       ],
       "links": {
-        "demo": "#",
-        "github": "#"
+        "demo": "",
+        "github": "",
+        "caseStudy": ""
       }
     },
     {
-      "title": "Roberto / OpenClaw",
-      "subtitle": "AI-Powered Personal Assistant",
-      "description": "Automation system with offline voice transcription and intelligent task management through Telegram interface.",
-      "role": "Backend Engineer & ML Integration",
-      "stack": ["Python", "Whisper", "faster-whisper", "Telegram Bot API"],
-      "highlights": [
-        "Integrated offline speech-to-text pipeline with Whisper models",
-        "Built background job processing system for productivity workflows",
-        "Designed command interface for seamless voice-to-action automation",
-        "Optimized transcription performance for real-time use cases"
+      "id": "cp-stonehedge",
+      "title": "Workforce Time Tracking & Operations System",
+      "category": "Internal Workforce Management Platform",
+      "description": "Internal workforce operations platform for attendance, scheduling, reporting, access control, and office automation.",
+      "businessValue": [
+        "Reduces manual attendance and absence tracking",
+        "Keeps workforce records consistent across admin workflows",
+        "Improves operational visibility through reporting",
+        "Connects office operations with digital control flows"
+      ],
+      "features": [
+        "Attendance tracking",
+        "Scheduling and absences",
+        "Reports and exports",
+        "Access control",
+        "Office lighting automation",
+        "Employee management"
+      ],
+      "stack": [
+        "Next.js",
+        "PHP",
+        "Bitrix"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/01-tracking-light.png",
+          "alt": "Attendance tracking dashboard",
+          "caption": "Attendance tracking"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/02-lighting-light.png",
+          "alt": "Smart office lighting control",
+          "caption": "Office lighting"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/03-reports-light.png",
+          "alt": "Reports page",
+          "caption": "Reports"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/04-logging-light.png",
+          "alt": "Activity logging page",
+          "caption": "Activity logging"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/05-users-light.png",
+          "alt": "Users and roles management",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/06-profile-light.png",
+          "alt": "User profile page",
+          "caption": "Profile"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/pages-light/07-deleted-employees-light.png",
+          "alt": "Deleted employees page",
+          "caption": "Deleted employees"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/01-modal-employee-edit-light.png",
+          "alt": "Employee edit modal",
+          "caption": "Employee edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/02-modal-schedule-edit-light.png",
+          "alt": "Schedule edit modal",
+          "caption": "Schedule edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/03-modal-justification-light.png",
+          "alt": "Absence justification modal",
+          "caption": "Justification"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/05-modal-mass-absence-calendar-light.png",
+          "alt": "Mass absence calendar modal",
+          "caption": "Mass absence calendar"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/06-modal-justifications-editor-light.png",
+          "alt": "Justifications editor modal",
+          "caption": "Justifications editor"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/08-modal-work-day-confirm-light.png",
+          "alt": "Work day confirmation modal",
+          "caption": "Work day confirm"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/09-modal-user-edit-light.png",
+          "alt": "User edit modal",
+          "caption": "User edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/10-profile-editing-light.png",
+          "alt": "Profile editing modal",
+          "caption": "Profile editing"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/modals-light/11-reports-employee-selector-light.png",
+          "alt": "Reports employee selector modal",
+          "caption": "Reports employee selector"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/01-tracking.png",
+          "alt": "Attendance tracking dashboard",
+          "caption": "Attendance tracking"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/02-lighting.png",
+          "alt": "Smart office lighting control",
+          "caption": "Office lighting"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/03-reports.png",
+          "alt": "Reports page",
+          "caption": "Reports"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/04-logging.png",
+          "alt": "Activity logging page",
+          "caption": "Activity logging"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/05-users.png",
+          "alt": "Users and roles management",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/06-profile.png",
+          "alt": "User profile page",
+          "caption": "Profile"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/07-deleted-employees.png",
+          "alt": "Deleted employees page",
+          "caption": "Deleted employees"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/08-modal-employee-edit.png",
+          "alt": "Employee edit modal",
+          "caption": "Employee edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/09-modal-schedule-edit.png",
+          "alt": "Schedule edit modal",
+          "caption": "Schedule edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/10-modal-justification.png",
+          "alt": "Absence justification modal",
+          "caption": "Justification"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/12-modal-mass-absence-calendar.png",
+          "alt": "Mass absence calendar modal",
+          "caption": "Mass absence calendar"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/13-modal-justifications-editor.png",
+          "alt": "Justifications editor modal",
+          "caption": "Justifications editor"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/15-modal-work-day-confirm.png",
+          "alt": "Work day confirmation modal",
+          "caption": "Work day confirm"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/16-modal-user-edit.png",
+          "alt": "User edit modal",
+          "caption": "User edit"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/17-profile-editing.png",
+          "alt": "Profile editing modal",
+          "caption": "Profile editing"
+        },
+        {
+          "src": "/assets/projects/cp-stonehedge/screenshots/18-reports-employee-selector.png",
+          "alt": "Reports employee selector modal",
+          "caption": "Reports employee selector"
+        }
       ],
       "links": {
-        "github": "#"
+        "demo": "",
+        "github": "",
+        "caseStudy": ""
       }
     },
     {
-      "title": "GitHub Profile & Portfolio",
-      "subtitle": "Custom Design System",
-      "description": "Minimal, performance-focused portfolio with custom design system and optimized asset delivery.",
-      "role": "Frontend Engineer & Designer",
-      "stack": ["HTML5", "CSS3", "Vanilla JS", "Vite"],
-      "highlights": [
-        "Achieved Lighthouse score 95+ across all metrics",
-        "Implemented CSS variable-based theming system",
-        "Optimized for accessibility with semantic HTML and ARIA",
-        "Created versioned asset caching strategy"
+      "id": "hr-candidate-onboarding",
+      "title": "HR Candidate Onboarding System",
+      "category": "Internal HR Workflow Application",
+      "description": "End-to-end HR onboarding platform with SMS authentication, autosave, conditional forms, backend persistence, and Bitrix integration.",
+      "businessValue": [
+        "Reduces manual candidate data collection",
+        "Improves data accuracy across long onboarding flows",
+        "Makes candidate intake recoverable with autosave and recovery paths",
+        "Connects onboarding data with internal HR processes"
+      ],
+      "features": [
+        "SMS authentication",
+        "Multi-step questionnaire",
+        "Conditional validation",
+        "Autosave",
+        "Backend persistence",
+        "Bitrix workflow integration"
+      ],
+      "stack": [
+        "Next.js",
+        "PHP",
+        "Bitrix"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/projects/hr-project/01-login-phone-full.png",
+          "alt": "Phone authorization screen for candidate onboarding",
+          "caption": "Phone authorization"
+        },
+        {
+          "src": "/assets/projects/hr-project/02-login-code-full.png",
+          "alt": "SMS code verification screen for candidate onboarding",
+          "caption": "SMS code verification"
+        },
+        {
+          "src": "/assets/projects/hr-project/03-step-1-full.png",
+          "alt": "Step 1 of the candidate questionnaire",
+          "caption": "Step 1"
+        },
+        {
+          "src": "/assets/projects/hr-project/04-step-2-full.png",
+          "alt": "Step 2 of the candidate questionnaire",
+          "caption": "Step 2"
+        },
+        {
+          "src": "/assets/projects/hr-project/05-step-3-full.png",
+          "alt": "Step 3 of the candidate questionnaire",
+          "caption": "Step 3"
+        },
+        {
+          "src": "/assets/projects/hr-project/06-step-4-full.png",
+          "alt": "Step 4 of the candidate questionnaire",
+          "caption": "Step 4"
+        },
+        {
+          "src": "/assets/projects/hr-project/07-step-5-full.png",
+          "alt": "Step 5 of the candidate questionnaire",
+          "caption": "Step 5"
+        },
+        {
+          "src": "/assets/projects/hr-project/08-step-6-full.png",
+          "alt": "Step 6 of the candidate questionnaire",
+          "caption": "Step 6"
+        },
+        {
+          "src": "/assets/projects/hr-project/09-step-7-full.png",
+          "alt": "Step 7 of the candidate questionnaire",
+          "caption": "Step 7"
+        },
+        {
+          "src": "/assets/projects/hr-project/10-step-8-full.png",
+          "alt": "Step 8 of the candidate questionnaire",
+          "caption": "Step 8"
+        },
+        {
+          "src": "/assets/projects/hr-project/03-step-1-errors-full.png",
+          "alt": "Step 1 validation state in the candidate questionnaire",
+          "caption": "Step 1 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/04-step-2-errors-full.png",
+          "alt": "Step 2 validation state in the candidate questionnaire",
+          "caption": "Step 2 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/05-step-3-errors-full.png",
+          "alt": "Step 3 validation state in the candidate questionnaire",
+          "caption": "Step 3 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/06-step-4-errors-full.png",
+          "alt": "Step 4 validation state in the candidate questionnaire",
+          "caption": "Step 4 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/07-step-5-errors-full.png",
+          "alt": "Step 5 validation state in the candidate questionnaire",
+          "caption": "Step 5 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/08-step-6-errors-full.png",
+          "alt": "Step 6 validation state in the candidate questionnaire",
+          "caption": "Step 6 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/09-step-7-errors-full.png",
+          "alt": "Step 7 validation state in the candidate questionnaire",
+          "caption": "Step 7 — validation"
+        },
+        {
+          "src": "/assets/projects/hr-project/10-step-8-errors-full.png",
+          "alt": "Step 8 validation state in the candidate questionnaire",
+          "caption": "Step 8 — validation"
+        }
       ],
       "links": {
-        "demo": "#",
-        "github": "#"
+        "demo": "",
+        "github": "",
+        "caseStudy": ""
       }
     }
   ],

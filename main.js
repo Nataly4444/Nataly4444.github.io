@@ -354,49 +354,325 @@ function setupSkillsSlider() {
 }
 
 
+let lastProjectModalTrigger = null;
+let projectsData = [];
+let projectCardEventsBound = false;
+
+const PROJECT_LINK_LABELS = {
+  demo: 'Live Demo',
+  github: 'Code',
+  caseStudy: 'Case Study'
+};
+
+function isValidLink(url) {
+  return url && url !== '#' && String(url).trim() !== '';
+}
+
+function renderProjectLinks(links, className = 'project-link') {
+  if (!links) return '';
+  return Object.entries(links)
+    .filter(([type, url]) => isValidLink(url) && PROJECT_LINK_LABELS[type])
+    .map(([type, url]) => `
+      <a href="${url}" class="${className}" target="_blank" rel="noopener noreferrer">
+        ${PROJECT_LINK_LABELS[type]}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 3L13 13M13 13V5M13 13H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    `).join('');
+}
+
+function renderProjectListSection(title, items, className = 'project-list-section') {
+  if (!Array.isArray(items) || items.length === 0) return '';
+
+  return `
+    <div class="${className}">
+      ${title ? `<h4 class="project-list-section-title">${title}</h4>` : ''}
+      <ul class="project-list-section-list">
+        ${items.map(item => `<li class="project-list-section-item">${item}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+}
+
+function renderProjectCard(project) {
+  const hasScreenshots = Array.isArray(project.screenshots) && project.screenshots.length > 0;
+  const linksHtml = renderProjectLinks(project.links);
+  const businessValueHtml = renderProjectListSection('', project.businessValue);
+
+  const previewButton = hasScreenshots
+    ? `<button class="project-link project-link-button" type="button" data-action="view-preview" data-project-id="${project.id}">Preview</button>`
+    : '';
+
+  return `
+    <article class="project-card">
+      <div class="project-card-top">
+        <span class="project-category">${project.category}</span>
+        ${project.role ? `<span class="project-status">${project.role}</span>` : ''}
+        ${project.status ? `<span class="project-status">${project.status}</span>` : ''}
+      </div>
+
+      <h3 class="project-title">${project.title}</h3>
+
+      <p class="project-description">${project.description}</p>
+
+      ${businessValueHtml}
+
+      <div class="project-stack">
+        ${(project.stack || []).map(tech => `<span class="project-tech">${tech}</span>`).join('')}
+      </div>
+
+      <div class="project-links">
+        ${previewButton}
+        ${linksHtml}
+      </div>
+    </article>
+  `;
+}
+
+function renderProjectModalContent(project) {
+  const hasScreenshots = Array.isArray(project.screenshots) && project.screenshots.length > 0;
+  const linksHtml = renderProjectLinks(project.links, 'project-link project-modal-link');
+  const businessValueHtml = renderProjectListSection(
+    '',
+    project.businessValue,
+    'project-modal-section project-list-section'
+  );
+  const featuresHtml = renderProjectListSection(
+    'Features',
+    project.features,
+    'project-modal-section project-list-section'
+  );
+
+  const screenshotsHtml = hasScreenshots
+    ? `
+      <div class="project-modal-screenshots" id="project-modal-screenshots">
+        <div class="project-screenshots-header">
+          <h4 class="project-modal-section-title">Screenshots</h4>
+          <div class="project-screenshots-nav">
+            <button class="project-screenshots-nav-btn" type="button" data-action="screenshots-prev" aria-label="Previous screenshot">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M11.25 14.25L6.75 9L11.25 3.75" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="project-screenshots-nav-btn" type="button" data-action="screenshots-next" aria-label="Next screenshot">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6.75 3.75L11.25 9L6.75 14.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="project-screenshots-track" tabindex="0" role="region" aria-label="Project screenshots">
+          <div class="project-screenshots-row">
+            ${project.screenshots.map(shot => `
+              <figure class="project-modal-image">
+                <img src="${shot.src}" alt="${shot.alt || ''}" loading="lazy" draggable="false" />
+                ${shot.caption ? `<figcaption class="project-modal-caption">${shot.caption}</figcaption>` : ''}
+              </figure>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `
+    : '';
+
+  return `
+    <div class="project-modal-overlay">
+      <div class="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" tabindex="-1">
+        <div class="project-modal-header">
+          <div class="project-modal-header-text">
+            <div class="project-card-top">
+              <span class="project-category">${project.category}</span>
+              ${project.role ? `<span class="project-status">${project.role}</span>` : ''}
+              ${project.status ? `<span class="project-status">${project.status}</span>` : ''}
+            </div>
+            <h3 id="project-modal-title" class="project-modal-title">${project.title}</h3>
+          </div>
+          <button class="project-modal-close" type="button" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="project-modal-body">
+          <p class="project-modal-description">${project.description}</p>
+
+          ${businessValueHtml}
+
+          ${featuresHtml}
+
+          <div class="project-modal-section">
+            <h4 class="project-modal-section-title">Stack</h4>
+            <div class="project-stack">
+              ${(project.stack || []).map(tech => `<span class="project-tech">${tech}</span>`).join('')}
+            </div>
+          </div>
+
+          ${screenshotsHtml}
+
+          ${linksHtml ? `<div class="project-modal-links">${linksHtml}</div>` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function getScreenshotScrollStep(track) {
+  const slide = track.querySelector('.project-modal-image');
+  if (!slide) return track.clientWidth * 0.85;
+  const row = track.querySelector('.project-screenshots-row');
+  const gap = row ? parseFloat(getComputedStyle(row).gap) || 16 : 16;
+  return slide.offsetWidth + gap;
+}
+
+function scrollScreenshotTrack(track, direction) {
+  track.scrollBy({
+    left: getScreenshotScrollStep(track) * direction,
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+  });
+}
+
+function setupScreenshotCarousel(root) {
+  const track = root.querySelector('.project-screenshots-track');
+  if (!track) return;
+
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+
+  const onMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    track.scrollLeft = startScrollLeft + (startX - e.pageX);
+  };
+
+  const stopDragging = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('is-dragging');
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', stopDragging);
+  };
+
+  track.addEventListener('mousedown', (e) => {
+    if (e.button !== 0 || e.target.closest('.project-screenshots-nav-btn')) return;
+    isDragging = true;
+    startX = e.pageX;
+    startScrollLeft = track.scrollLeft;
+    track.classList.add('is-dragging');
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', stopDragging);
+  });
+
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      scrollScreenshotTrack(track, -1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      scrollScreenshotTrack(track, 1);
+    }
+  });
+}
+
+function renderProjectModal(project) {
+  const root = document.getElementById('project-modal-root');
+  if (!root) return;
+  root.innerHTML = renderProjectModalContent(project);
+}
+
+function closeProjectModal() {
+  const root = document.getElementById('project-modal-root');
+  if (!root) return;
+
+  root.innerHTML = '';
+  document.body.classList.remove('modal-open');
+
+  if (lastProjectModalTrigger) {
+    lastProjectModalTrigger.focus();
+    lastProjectModalTrigger = null;
+  }
+}
+
+function openProjectModal(project, triggerElement, scrollToScreenshots = false) {
+  const root = document.getElementById('project-modal-root');
+  if (!root || !project) return;
+
+  lastProjectModalTrigger = triggerElement;
+  renderProjectModal(project);
+  setupScreenshotCarousel(root);
+  document.body.classList.add('modal-open');
+
+  const closeBtn = root.querySelector('.project-modal-close');
+  if (closeBtn) closeBtn.focus();
+
+  if (scrollToScreenshots) {
+    const screenshots = root.querySelector('#project-modal-screenshots');
+    if (screenshots) {
+      requestAnimationFrame(() => {
+        screenshots.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+      });
+    }
+  }
+}
+
+function setupProjectModalEvents() {
+  const root = document.getElementById('project-modal-root');
+  if (!root) return;
+
+  root.addEventListener('click', (e) => {
+    if (e.target.classList.contains('project-modal-overlay')) {
+      closeProjectModal();
+    }
+    if (e.target.closest('.project-modal-close')) {
+      closeProjectModal();
+    }
+    if (e.target.closest('[data-action="screenshots-prev"]')) {
+      const track = root.querySelector('.project-screenshots-track');
+      if (track) scrollScreenshotTrack(track, -1);
+    }
+    if (e.target.closest('[data-action="screenshots-next"]')) {
+      const track = root.querySelector('.project-screenshots-track');
+      if (track) scrollScreenshotTrack(track, 1);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && root.querySelector('.project-modal-overlay')) {
+      closeProjectModal();
+    }
+  });
+}
+
+function setupProjectCardEvents() {
+  const projectsContainer = document.querySelector('[data-projects]');
+  if (!projectsContainer || projectCardEventsBound) return;
+
+  projectCardEventsBound = true;
+  projectsContainer.addEventListener('click', (e) => {
+    const button = e.target.closest('[data-action]');
+    if (!button) return;
+
+    const projectId = button.getAttribute('data-project-id');
+    const project = projectsData.find(p => p.id === projectId);
+    if (!project) return;
+
+    const action = button.getAttribute('data-action');
+    if (action === 'view-details') {
+      openProjectModal(project, button);
+    } else if (action === 'view-preview') {
+      openProjectModal(project, button, true);
+    }
+  });
+}
+
 function populateProjects(data) {
   const projectsContainer = document.querySelector('[data-projects]');
   if (!projectsContainer || !data.projects) return;
 
-  const html = data.projects.map(project => {
-    const linksHtml = Object.entries(project.links || {})
-      .filter(([_, url]) => url && url !== '#')
-      .map(([type, url]) => `
-        <a href="${url}" class="project-link" target="_blank" rel="noopener noreferrer">
-          ${type === 'demo' ? 'View Demo' : 'View Code'}
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M3 3L13 13M13 13V5M13 13H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      `).join('');
-
-    return `
-      <article class="project-card">
-        <div class="project-header">
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-subtitle">${project.subtitle}</p>
-        </div>
-        <p class="project-description">${project.description}</p>
-        <div class="project-meta">
-          <div>
-            <p class="project-role">Role: ${project.role}</p>
-          </div>
-          <div>
-            <p class="project-stack-label">Stack:</p>
-            <div class="project-stack">
-              ${project.stack.map(tech => `<span class="project-tech">${tech}</span>`).join('')}
-            </div>
-          </div>
-        </div>
-        <ul class="project-highlights">
-          ${project.highlights.map(highlight => `<li class="project-highlight">${highlight}</li>`).join('')}
-        </ul>
-        ${linksHtml ? `<div class="project-links">${linksHtml}</div>` : ''}
-      </article>
-    `;
-  }).join('');
-
-  projectsContainer.innerHTML = html;
+  projectsData = data.projects;
+  projectsContainer.innerHTML = data.projects.map(renderProjectCard).join('');
+  setupProjectCardEvents();
 }
 
 function populateExperience(data) {
@@ -495,6 +771,7 @@ async function init() {
   setupNavigation();
   setupSmoothScroll();
   setupAccessibility();
+  setupProjectModalEvents();
 }
 
 if (document.readyState === 'loading') {
