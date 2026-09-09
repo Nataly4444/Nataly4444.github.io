@@ -1,8 +1,8 @@
 {
   "name": "Natalia Kudryavtseva",
   "title": "Senior Software Engineer",
-  "tagline": "Building scalable, high-performance digital products\nFocused on architecture, performance, and user experience",
-  "about": "<p><strong>Senior Software Engineer focused on building scalable, high-performance digital products.</strong></p><p>I design and develop applications across platforms, with a strong emphasis on <strong>architecture, performance, and user experience.</strong></p><p>My work includes building <strong>design systems</strong>, improving application performance, and shaping <strong>maintainable frontend architectures</strong> for complex products. I aim to create systems that scale effectively and remain robust as complexity grows.</p>",
+  "tagline": "Building scalable digital products, complex web applications, and automation tools.",
+  "about": "<p><strong>Senior Software Engineer focused on building scalable web products, automation systems, and AI-powered tools.</strong></p><p>My work combines frontend architecture, product thinking, and business process automation. I design and develop applications that help teams reduce manual work, improve data reliability, and ship digital products faster.</p><p>I have experience building internal platforms, dashboards, onboarding systems, warehouse tools, and complex user interfaces with modern web technologies.</p>",
   "contacts": {
     "email": "kranki@mail.ru",
     "emailGmail": "kudriavtsevanatali@gmail.com",
