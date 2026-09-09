@@ -103,6 +103,127 @@
   },
   "projects": [
     {
+      "id": "rfid-warehouse",
+      "title": "RFID Warehouse",
+      "category": "Internal Tool",
+      "description": "Warehouse operations platform with inventory workflows, authenticated access, RFID scanner integration, and real-time device updates.",
+      "businessValue": [
+        "Improves real-time visibility into warehouse operations",
+        "Reduces manual inventory status checks",
+        "Keeps operators and RFID devices synchronized",
+        "Supports faster receiving and shipping workflows"
+      ],
+      "features": [
+        "Inventory tracking",
+        "Receiving workflow",
+        "Shipping workflow",
+        "RFID scanner updates",
+        "Device management",
+        "Authenticated operator flows"
+      ],
+      "stack": [
+        "Nuxt 3",
+        "Server-Sent Events"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/01-home-mobile.png",
+          "alt": "RFID Warehouse — Home dashboard",
+          "caption": "Home dashboard"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/02-receiving-mobile.png",
+          "alt": "RFID Warehouse — Receiving workflow",
+          "caption": "Receiving workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/03-receiving-device-list-mobile.png",
+          "alt": "RFID Warehouse — Receiving device selection",
+          "caption": "Receiving device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/04-inventory-mobile.png",
+          "alt": "RFID Warehouse — Inventory",
+          "caption": "Inventory"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/05-shipment-mobile.png",
+          "alt": "RFID Warehouse — Shipment workflow",
+          "caption": "Shipment workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/07-devices-mobile.png",
+          "alt": "RFID Warehouse — Device selection",
+          "caption": "Device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/10-settings-mobile.png",
+          "alt": "RFID Warehouse — Settings",
+          "caption": "Settings"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/11-users-list-mobile.png",
+          "alt": "RFID Warehouse — Users and roles",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/showcase/13-devices-list-mobile.png",
+          "alt": "RFID Warehouse — RFID readers",
+          "caption": "RFID readers"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/01-home-mobile.png",
+          "alt": "RFID Warehouse — Home dashboard",
+          "caption": "Home dashboard"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/02-receiving-mobile.png",
+          "alt": "RFID Warehouse — Receiving workflow",
+          "caption": "Receiving workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/03-receiving-device-list-mobile.png",
+          "alt": "RFID Warehouse — Receiving device selection",
+          "caption": "Receiving device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/04-inventory-mobile.png",
+          "alt": "RFID Warehouse — Inventory",
+          "caption": "Inventory"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/05-shipment-mobile.png",
+          "alt": "RFID Warehouse — Shipment workflow",
+          "caption": "Shipment workflow"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/07-devices-mobile.png",
+          "alt": "RFID Warehouse — Device selection",
+          "caption": "Device selection"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/10-settings-mobile.png",
+          "alt": "RFID Warehouse — Settings",
+          "caption": "Settings"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/11-users-list-mobile.png",
+          "alt": "RFID Warehouse — Users and roles",
+          "caption": "Users and roles"
+        },
+        {
+          "src": "/assets/projects/rfid-warehouse/mobile/13-devices-list-mobile.png",
+          "alt": "RFID Warehouse — RFID readers",
+          "caption": "RFID readers"
+        }
+      ],
+      "links": {
+        "demo": "",
+        "github": "",
+        "caseStudy": ""
+      }
+    },
+    {
       "id": "cp-stonehedge",
       "title": "Workforce Time Tracking & Operations System",
       "category": "Internal Workforce Management Platform",
@@ -408,127 +529,6 @@
           "src": "/assets/projects/hr-project/10-step-8-errors-full.png",
           "alt": "Step 8 validation state in the candidate questionnaire",
           "caption": "Step 8 — validation"
-        }
-      ],
-      "links": {
-        "demo": "",
-        "github": "",
-        "caseStudy": ""
-      }
-    },
-    {
-      "id": "rfid-warehouse",
-      "title": "RFID Warehouse",
-      "category": "Internal Tool",
-      "description": "Warehouse operations platform with inventory workflows, authenticated access, RFID scanner integration, and real-time device updates.",
-      "businessValue": [
-        "Improves real-time visibility into warehouse operations",
-        "Reduces manual inventory status checks",
-        "Keeps operators and RFID devices synchronized",
-        "Supports faster receiving and shipping workflows"
-      ],
-      "features": [
-        "Inventory tracking",
-        "Receiving workflow",
-        "Shipping workflow",
-        "RFID scanner updates",
-        "Device management",
-        "Authenticated operator flows"
-      ],
-      "stack": [
-        "Nuxt 3",
-        "Server-Sent Events"
-      ],
-      "screenshots": [
-        {
-          "src": "/assets/projects/rfid-warehouse/showcase/01-home-mobile.png",
-          "alt": "RFID Warehouse — Home dashboard",
-          "caption": "Home dashboard"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/showcase/02-receiving-mobile.png",
-          "alt": "RFID Warehouse — Receiving workflow",
-          "caption": "Receiving workflow"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/showcase/03-receiving-device-list-mobile.png",
-          "alt": "RFID Warehouse — Receiving device selection",
-          "caption": "Receiving device selection"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/showcase/04-inventory-mobile.png",
-          "alt": "RFID Warehouse — Inventory",
-          "caption": "Inventory"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/showcase/05-shipment-mobile.png",
-          "alt": "RFID Warehouse — Shipment workflow",
-          "caption": "Shipment workflow"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/showcase/07-devices-mobile.png",
-          "alt": "RFID Warehouse — Device selection",
-          "caption": "Device selection"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/showcase/10-settings-mobile.png",
-          "alt": "RFID Warehouse — Settings",
-          "caption": "Settings"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/showcase/11-users-list-mobile.png",
-          "alt": "RFID Warehouse — Users and roles",
-          "caption": "Users and roles"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/showcase/13-devices-list-mobile.png",
-          "alt": "RFID Warehouse — RFID readers",
-          "caption": "RFID readers"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/mobile/01-home-mobile.png",
-          "alt": "RFID Warehouse — Home dashboard",
-          "caption": "Home dashboard"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/mobile/02-receiving-mobile.png",
-          "alt": "RFID Warehouse — Receiving workflow",
-          "caption": "Receiving workflow"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/mobile/03-receiving-device-list-mobile.png",
-          "alt": "RFID Warehouse — Receiving device selection",
-          "caption": "Receiving device selection"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/mobile/04-inventory-mobile.png",
-          "alt": "RFID Warehouse — Inventory",
-          "caption": "Inventory"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/mobile/05-shipment-mobile.png",
-          "alt": "RFID Warehouse — Shipment workflow",
-          "caption": "Shipment workflow"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/mobile/07-devices-mobile.png",
-          "alt": "RFID Warehouse — Device selection",
-          "caption": "Device selection"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/mobile/10-settings-mobile.png",
-          "alt": "RFID Warehouse — Settings",
-          "caption": "Settings"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/mobile/11-users-list-mobile.png",
-          "alt": "RFID Warehouse — Users and roles",
-          "caption": "Users and roles"
-        },
-        {
-          "src": "/assets/projects/rfid-warehouse/mobile/13-devices-list-mobile.png",
-          "alt": "RFID Warehouse — RFID readers",
-          "caption": "RFID readers"
         }
       ],
       "links": {

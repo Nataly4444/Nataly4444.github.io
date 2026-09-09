@@ -682,6 +682,11 @@ body {
   color: var(--color-accent-muted);
 }
 
+.project-link:focus,
+.project-link:focus-visible {
+  outline: none;
+}
+
 .project-link svg {
   width: 1rem;
   height: 1rem;
