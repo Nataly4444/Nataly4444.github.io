@@ -18,7 +18,7 @@
       "Svelte",
       "TypeScript",
       "Next.js",
-      "Nuxt.js (SPA / SSR / SSG)"
+      "Nuxt.js"
     ],
     "State Management": [
       "Redux",
@@ -106,13 +106,11 @@
       "id": "cp-stonehedge",
       "title": "Workforce Time Tracking & Operations System",
       "category": "Internal Workforce Management Platform",
-      "description": "Internal workforce operations platform for attendance, scheduling, absences, reporting, access control, and office lighting automation. I owned the core operational flows so employee data, admin actions, and reporting stayed consistent across the system, reducing manual reconciliation across attendance, absences, and scheduling.",
+      "description": "Internal workforce operations platform for attendance, scheduling, reporting, access control, and office automation.",
       "stack": [
         "Next.js",
-        "REST APIs",
-        "RBAC",
-        "XLSX exports",
-        "hardware integration"
+        "PHP",
+        "Bitrix"
       ],
       "screenshots": [
         {
@@ -286,14 +284,11 @@
       "id": "hr-candidate-onboarding",
       "title": "HR Candidate Onboarding System",
       "category": "Internal HR Workflow Application",
-      "description": "End-to-end HR onboarding platform with SMS authentication, multi-step candidate intake, conditional validation, PHP backend persistence, and Bitrix integration. I owned the full delivery across frontend and backend: built the onboarding flow, implemented server-side authentication, wired structured form persistence, and made the workflow recoverable through autosave and recovery paths so candidate data stayed reliable across long sessions.",
+      "description": "End-to-end HR onboarding platform with SMS authentication, autosave, conditional forms, backend persistence, and Bitrix integration.",
       "stack": [
         "Next.js",
-        "PHP backend",
-        "Bitrix integration",
-        "server-side auth",
-        "autosave",
-        "conditional forms"
+        "PHP",
+        "Bitrix"
       ],
       "screenshots": [
         {
@@ -397,13 +392,10 @@
       "id": "rfid-warehouse",
       "title": "RFID Warehouse",
       "category": "Internal Tool",
-      "description": "Warehouse operations platform with authenticated workflows, inventory management, and real-time RFID scanner updates. I built the operational flows for receiving, shipping, and device management, and added SSE-based live updates so warehouse state stayed synchronized in real time for operators and devices.",
+      "description": "Warehouse operations platform with inventory workflows, authenticated access, RFID scanner integration, and real-time device updates.",
       "stack": [
         "Nuxt 3",
-        "SSE",
-        "REST APIs",
-        "authenticated workflows",
-        "RFID integration"
+        "Server-Sent Events"
       ],
       "screenshots": [
         {
