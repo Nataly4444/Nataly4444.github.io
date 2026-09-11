@@ -532,17 +532,51 @@ function scrollScreenshotTrack(track, direction) {
   });
 }
 
+function closeScreenshotLightbox() {
+  const root = document.getElementById('project-modal-root');
+  if (!root) return;
+  const lightbox = root.querySelector('.screenshot-lightbox');
+  if (lightbox) lightbox.remove();
+}
+
+function openScreenshotLightbox(src, alt) {
+  const root = document.getElementById('project-modal-root');
+  if (!root || !src) return;
+
+  closeScreenshotLightbox();
+
+  const lightbox = document.createElement('div');
+  lightbox.className = 'screenshot-lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', alt || 'Screenshot preview');
+  lightbox.innerHTML = `
+    <button class="screenshot-lightbox-close" type="button" aria-label="Close preview">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <img src="${src}" alt="${alt || ''}" draggable="false" />
+  `;
+  root.appendChild(lightbox);
+
+  const closeBtn = lightbox.querySelector('.screenshot-lightbox-close');
+  if (closeBtn) closeBtn.focus();
+}
+
 function setupScreenshotCarousel(root) {
   const track = root.querySelector('.project-screenshots-track');
   if (!track) return;
 
   let isDragging = false;
+  let dragDistance = 0;
   let startX = 0;
   let startScrollLeft = 0;
 
   const onMouseMove = (e) => {
     if (!isDragging) return;
     e.preventDefault();
+    dragDistance = Math.max(dragDistance, Math.abs(startX - e.pageX));
     track.scrollLeft = startScrollLeft + (startX - e.pageX);
   };
 
@@ -557,11 +591,19 @@ function setupScreenshotCarousel(root) {
   track.addEventListener('mousedown', (e) => {
     if (e.button !== 0 || e.target.closest('.project-screenshots-nav-btn')) return;
     isDragging = true;
+    dragDistance = 0;
     startX = e.pageX;
     startScrollLeft = track.scrollLeft;
     track.classList.add('is-dragging');
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', stopDragging);
+  });
+
+  track.addEventListener('click', (e) => {
+    if (dragDistance > 6) return;
+    const img = e.target.closest('.project-modal-image img');
+    if (!img) return;
+    openScreenshotLightbox(img.getAttribute('src'), img.getAttribute('alt') || '');
   });
 
   track.addEventListener('keydown', (e) => {
@@ -585,6 +627,7 @@ function closeProjectModal() {
   const root = document.getElementById('project-modal-root');
   if (!root) return;
 
+  closeScreenshotLightbox();
   root.innerHTML = '';
   document.body.classList.remove('modal-open');
 
@@ -621,6 +664,10 @@ function setupProjectModalEvents() {
   if (!root) return;
 
   root.addEventListener('click', (e) => {
+    if (e.target.closest('.screenshot-lightbox-close') || e.target.classList.contains('screenshot-lightbox')) {
+      closeScreenshotLightbox();
+      return;
+    }
     if (e.target.classList.contains('project-modal-overlay')) {
       closeProjectModal();
     }
@@ -638,7 +685,12 @@ function setupProjectModalEvents() {
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && root.querySelector('.project-modal-overlay')) {
+    if (e.key !== 'Escape') return;
+    if (root.querySelector('.screenshot-lightbox')) {
+      closeScreenshotLightbox();
+      return;
+    }
+    if (root.querySelector('.project-modal-overlay')) {
       closeProjectModal();
     }
   });
