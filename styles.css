@@ -886,6 +886,64 @@ body {
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-subtle);
   background: rgba(255, 255, 255, 0.02);
+  cursor: zoom-in;
+  transition: opacity var(--transition-fast);
+}
+
+.project-modal-image img:hover {
+  opacity: 0.92;
+}
+
+.screenshot-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(10px);
+  cursor: zoom-out;
+}
+
+.screenshot-lightbox img {
+  display: block;
+  max-width: min(1100px, 100%);
+  max-height: calc(100vh - 3rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+  cursor: default;
+}
+
+.screenshot-lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.screenshot-lightbox-close:hover,
+.screenshot-lightbox-close:focus-visible {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
 }
 
 .project-modal-caption {
