@@ -77,35 +77,49 @@ function populateSkills(data) {
   `).join('');
 
   skillsContainer.innerHTML = html;
-  setupSkillsSlider();
+  setupInfiniteSlider({
+    track: document.querySelector('.skills-slider-track'),
+    grid: skillsContainer,
+    cardSelector: '.skill-category',
+    cloneClass: 'skill-category-clone'
+  });
 }
 
-function setupSkillsSlider() {
-  const track = document.querySelector('.skills-slider-track');
-  const grid = document.querySelector('.skills-grid');
+function setupInfiniteSlider({
+  track,
+  grid,
+  cardSelector,
+  cloneClass,
+  autoScroll = true,
+  loop = true,
+  prevBtn = null,
+  nextBtn = null
+}) {
   if (!track || !grid) return;
 
-  const cards = grid.querySelectorAll('.skill-category');
+  const cards = [...grid.querySelectorAll(cardSelector)];
   const cardCount = cards.length;
   if (cardCount === 0) return;
 
-  const headFrag = document.createDocumentFragment();
-  cards.forEach(card => {
-    const clone = card.cloneNode(true);
-    clone.classList.add('skill-category-clone');
-    headFrag.appendChild(clone);
-  });
-  grid.insertBefore(headFrag, grid.firstChild);
+  if (loop) {
+    const headFrag = document.createDocumentFragment();
+    cards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.classList.add(cloneClass);
+      headFrag.appendChild(clone);
+    });
+    grid.insertBefore(headFrag, grid.firstChild);
 
-  cards.forEach(card => {
-    const clone = card.cloneNode(true);
-    clone.classList.add('skill-category-clone');
-    grid.appendChild(clone);
-  });
+    cards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.classList.add(cloneClass);
+      grid.appendChild(clone);
+    });
+  }
 
-  const allCards = grid.querySelectorAll('.skill-category');
-  const origOffset = cardCount;
-  const dupOffset = cardCount * 2;
+  const allCards = grid.querySelectorAll(cardSelector);
+  const origOffset = loop ? cardCount : 0;
+  const dupOffset = loop ? cardCount * 2 : 0;
 
   function contentScrollLeftForCard(card) {
     return card.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
@@ -114,8 +128,11 @@ function setupSkillsSlider() {
   let loopWidth = 0;
   let dupAlignScroll = 0;
   let loopStartScroll = 0;
+  let maxScrollLeft = 0;
 
   function refreshLoopMetrics() {
+    maxScrollLeft = Math.max(0, track.scrollWidth - track.clientWidth);
+    if (!loop) return;
     const firstOrig = allCards[origOffset];
     const dup = allCards[dupOffset];
     const loopHead = allCards[0];
@@ -131,7 +148,7 @@ function setupSkillsSlider() {
   }
 
   function normalizeCarouselScrollPosition() {
-    if (loopWidth <= 0) return;
+    if (!loop || loopWidth <= 0) return;
     const prevBeh = track.style.scrollBehavior;
     track.style.scrollBehavior = 'auto';
     let guard = 0;
@@ -156,13 +173,18 @@ function setupSkillsSlider() {
   let isAutoScrolling = false;
 
   function scrollToIndex(index, useClone = false, behavior = 'smooth') {
-    if (index >= cardCount) index = 0;
-    if (index < 0) index = cardCount - 1;
+    if (loop) {
+      if (index >= cardCount) index = 0;
+      if (index < 0) index = cardCount - 1;
+    } else {
+      index = Math.max(0, Math.min(cardCount - 1, index));
+    }
     currentIndex = index;
-    const targetCard = useClone ? allCards[dupOffset + index] : allCards[origOffset + index];
+    const targetCard = useClone && loop ? allCards[dupOffset + index] : allCards[origOffset + index];
     if (!targetCard) return;
     const left = contentScrollLeftForCard(targetCard);
     track.scrollTo({ left, behavior });
+    updateNavButtons();
   }
 
   function updateCurrentIndexFromScroll() {
@@ -177,6 +199,21 @@ function setupSkillsSlider() {
       }
     }
     currentIndex = closest;
+    updateNavButtons();
+  }
+
+  function updateNavButtons() {
+    if (!prevBtn && !nextBtn) return;
+    if (loop) {
+      if (prevBtn) prevBtn.disabled = false;
+      if (nextBtn) nextBtn.disabled = false;
+      return;
+    }
+    refreshLoopMetrics();
+    const atStart = track.scrollLeft <= 1;
+    const atEnd = track.scrollLeft >= maxScrollLeft - 1;
+    if (prevBtn) prevBtn.disabled = atStart;
+    if (nextBtn) nextBtn.disabled = atEnd;
   }
 
   function runAutoScrollStep() {
@@ -235,6 +272,14 @@ function setupSkillsSlider() {
 
   let userScrollTimeout = null;
   function onUserScroll() {
+    if (!autoScroll) {
+      if (loop) {
+        refreshLoopMetrics();
+        normalizeCarouselScrollPosition();
+      }
+      updateCurrentIndexFromScroll();
+      return;
+    }
     stopAutoScroll();
     if (userScrollTimeout) clearTimeout(userScrollTimeout);
     userScrollTimeout = setTimeout(() => {
@@ -250,6 +295,7 @@ function setupSkillsSlider() {
   let carouselScrollSettleTimer = null;
   track.addEventListener('scroll', () => {
     updateCurrentIndexFromScroll();
+    if (!loop) return;
     if (carouselScrollSettleTimer) clearTimeout(carouselScrollSettleTimer);
     carouselScrollSettleTimer = setTimeout(() => {
       carouselScrollSettleTimer = null;
@@ -263,10 +309,12 @@ function setupSkillsSlider() {
 
   const ro = new ResizeObserver(() => {
     refreshLoopMetrics();
+    updateNavButtons();
   });
   ro.observe(track);
 
   let isDragging = false;
+  let didDrag = false;
   let startX = 0;
   let startScrollLeft = 0;
 
@@ -274,6 +322,7 @@ function setupSkillsSlider() {
     if (!isDragging) return;
     e.preventDefault();
     const delta = startX - e.pageX;
+    if (Math.abs(delta) > 4) didDrag = true;
     track.scrollLeft = startScrollLeft + delta;
   };
 
@@ -284,12 +333,15 @@ function setupSkillsSlider() {
     track.style.userSelect = '';
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
+    updateNavButtons();
   };
 
   track.addEventListener('mousedown', (e) => {
     if (e.button !== 0) return;
     if (e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents) return;
+    if (e.target.closest('a, button')) return;
     isDragging = true;
+    didDrag = false;
     startX = e.pageX;
     startScrollLeft = track.scrollLeft;
     track.style.cursor = 'grabbing';
@@ -298,6 +350,13 @@ function setupSkillsSlider() {
     document.addEventListener('mouseup', handleMouseUp);
     onUserScroll();
   });
+
+  track.addEventListener('click', (e) => {
+    if (!didDrag) return;
+    e.preventDefault();
+    e.stopPropagation();
+    didDrag = false;
+  }, true);
 
   let touchSliderScrollLeft = null;
   track.addEventListener('touchstart', (e) => {
@@ -323,7 +382,7 @@ function setupSkillsSlider() {
     e.preventDefault();
     refreshLoopMetrics();
     let next = track.scrollLeft + e.deltaY;
-    if (loopWidth > 0) {
+    if (loop && loopWidth > 0) {
       let guard = 0;
       while (next < loopStartScroll - 0.5 && guard < 48) {
         next += loopWidth;
@@ -334,21 +393,75 @@ function setupSkillsSlider() {
         next -= loopWidth;
         guard += 1;
       }
+    } else if (!loop) {
+      next = Math.max(0, Math.min(maxScrollLeft, next));
     }
     track.scrollLeft = next;
+    updateNavButtons();
   }, { passive: false });
+
+  let navSettleTimer = null;
+  function goBy(step) {
+    updateCurrentIndexFromScroll();
+    if (!loop) {
+      const nextIndex = currentIndex + step;
+      if (nextIndex < 0 || nextIndex >= cardCount) return;
+      scrollToIndex(nextIndex, false, 'smooth');
+      return;
+    }
+
+    refreshLoopMetrics();
+    normalizeCarouselScrollPosition();
+    updateCurrentIndexFromScroll();
+    const nextIndex = (currentIndex + step + cardCount) % cardCount;
+    const wrapForward = step > 0 && currentIndex === cardCount - 1 && nextIndex === 0;
+    const wrapBackward = step < 0 && currentIndex === 0 && nextIndex === cardCount - 1;
+
+    if (wrapBackward) {
+      const targetCard = allCards[nextIndex];
+      if (targetCard) {
+        currentIndex = nextIndex;
+        track.scrollTo({ left: contentScrollLeftForCard(targetCard), behavior: 'smooth' });
+      }
+    } else {
+      scrollToIndex(nextIndex, wrapForward, 'smooth');
+    }
+
+    if (navSettleTimer) clearTimeout(navSettleTimer);
+    navSettleTimer = setTimeout(() => {
+      navSettleTimer = null;
+      refreshLoopMetrics();
+      normalizeCarouselScrollPosition();
+      updateCurrentIndexFromScroll();
+    }, AUTO_SETTLE_MS);
+
+    if (autoScroll) onUserScroll();
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => goBy(-1));
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => goBy(1));
+  }
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       refreshLoopMetrics();
-      const firstOrig = allCards[origOffset];
-      if (firstOrig && loopWidth > 0) {
-        track.style.scrollBehavior = 'auto';
-        track.scrollLeft = contentScrollLeftForCard(firstOrig);
-        track.style.scrollBehavior = '';
-        refreshLoopMetrics();
+      if (loop) {
+        const firstOrig = allCards[origOffset];
+        if (firstOrig && loopWidth > 0) {
+          track.style.scrollBehavior = 'auto';
+          track.scrollLeft = contentScrollLeftForCard(firstOrig);
+          track.style.scrollBehavior = '';
+          refreshLoopMetrics();
+        }
+      } else {
+        track.scrollLeft = 0;
+        currentIndex = 0;
       }
-      if (!prefersReducedMotion) startAutoScroll();
+      updateNavButtons();
+      if (autoScroll && loop && !prefersReducedMotion) startAutoScroll();
     });
   });
 }
@@ -725,6 +838,16 @@ function populateProjects(data) {
   projectsData = data.projects;
   projectsContainer.innerHTML = data.projects.map(renderProjectCard).join('');
   setupProjectCardEvents();
+  setupInfiniteSlider({
+    track: document.querySelector('.projects-slider-track'),
+    grid: projectsContainer,
+    cardSelector: '.project-card',
+    cloneClass: 'project-card-clone',
+    autoScroll: false,
+    loop: false,
+    prevBtn: document.querySelector('[data-projects-prev]'),
+    nextBtn: document.querySelector('[data-projects-next]')
+  });
 }
 
 function populateExperience(data) {

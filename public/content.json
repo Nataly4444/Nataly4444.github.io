@@ -103,9 +103,77 @@
   },
   "projects": [
     {
+      "id": "worldfoundry",
+      "title": "WorldFoundry — AI 3D Game Builder",
+      "category": "AI Tool",
+      "description": "AI-assisted 3D game builder that turns natural-language ideas into playable browser games. The platform combines a chat-based AI coding agent, isolated sandboxes, live previews, model-based generation, usage billing, and protected game runtimes.",
+      "businessValue": [
+        "Turns natural-language prompts into playable Three.js game worlds",
+        "Supports iterative AI-assisted editing through a chat-based workflow",
+        "Runs each game in an isolated Daytona sandbox with protected runtime files",
+        "Provides live previews, downloadable game archives, and model-based credit controls"
+      ],
+      "features": [
+        "Natural-language game generation",
+        "Chat-based AI editing",
+        "Isolated Daytona sandboxes",
+        "Live previews",
+        "Downloadable game archives",
+        "Model-based credit controls"
+      ],
+      "stack": [
+        "Next.js",
+        "Three.js",
+        "AI SDK",
+        "PostgreSQL",
+        "Drizzle",
+        "Trigger.dev",
+        "Daytona",
+        "Clerk",
+        "Sentry"
+      ],
+      "screenshots": [
+        {
+          "src": "/assets/projects/worldfoundry/00-builder.png",
+          "alt": "WorldFoundry — AI game builder",
+          "caption": "AI game builder"
+        },
+        {
+          "src": "/assets/projects/worldfoundry/02-models.png",
+          "alt": "WorldFoundry — Models and pricing",
+          "caption": "Models and pricing"
+        },
+        {
+          "src": "/assets/projects/worldfoundry/08-billing.png",
+          "alt": "WorldFoundry — Compute billing",
+          "caption": "Compute billing"
+        },
+        {
+          "src": "/assets/projects/worldfoundry/09-play.png",
+          "alt": "WorldFoundry — Play downloaded ARK game",
+          "caption": "Play runtime"
+        },
+        {
+          "src": "/assets/projects/worldfoundry/03-privacy.png",
+          "alt": "WorldFoundry — Privacy Policy",
+          "caption": "Privacy Policy"
+        },
+        {
+          "src": "/assets/projects/worldfoundry/04-terms.png",
+          "alt": "WorldFoundry — Terms of Service",
+          "caption": "Terms of Service"
+        }
+      ],
+      "links": {
+        "demo": "https://worldfoundry.kranski.space/",
+        "github": "",
+        "caseStudy": ""
+      }
+    },
+    {
       "id": "rfid-warehouse",
       "title": "RFID Warehouse",
-      "category": "Internal Tool",
+      "category": "Internal",
       "description": "Warehouse operations platform with inventory workflows, authenticated access, RFID scanner integration, and real-time device updates.",
       "businessValue": [
         "Improves real-time visibility into warehouse operations",
@@ -226,7 +294,7 @@
     {
       "id": "cp-stonehedge",
       "title": "Workforce Time Tracking & Operations System",
-      "category": "Internal Workforce Management Platform",
+      "category": "Internal",
       "description": "Internal workforce operations platform for attendance, scheduling, reporting, access control, and office automation.",
       "businessValue": [
         "Reduces manual attendance and absence tracking",
@@ -418,7 +486,7 @@
     {
       "id": "hr-candidate-onboarding",
       "title": "HR Candidate Onboarding System",
-      "category": "Internal HR Workflow Application",
+      "category": "Internal",
       "description": "End-to-end HR onboarding platform with SMS authentication, autosave, conditional forms, backend persistence, and Bitrix integration.",
       "businessValue": [
         "Reduces manual candidate data collection",
